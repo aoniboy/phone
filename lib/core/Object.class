@@ -1,0 +1,704 @@
+<?php
+class Object extends DBAccess{
+	public static $version='JMS 3.0';
+	public $sversion='?v=2018050211';
+	public $actionTemplate;
+	public $debugLevel=0;
+	public $logFileName='log/jms-server-custom.log';
+	private $sysLogFileName='log/jms-system.log';
+	public function display(){
+		$args=func_get_args();
+		$argc=func_num_args();
+		if($argc==0) throw new Exception('Template is null');
+		$__tplfile=$this->actionTemplate .$args[0];
+		unset($args[0]);
+		
+		if($argc>=2){
+			$__expire=$args[1];
+			unset($args[1]);
+			$argc-=2;
+			$args=array_values($args);
+			if($__expire>0){
+				// ���û���
+				$__cacheFile=$this->getCacheDir().md5($__tplfile.serialize($args));
+				if(is_file($__cacheFile) && filemtime($__cacheFile)+$__expire>$this->time){
+					// ������Чʱ��ֱ�Ӷ�����
+					readfile($__cacheFile);
+				}else{
+					ob_start();
+					include $__tplfile;
+					$content=ob_get_flush();
+					file_put_contents($__cacheFile, $content);
+					return;
+				}
+			}
+		}else{
+			$argc=0;
+		}
+		
+		include $__tplfile;
+	}
+	public function fetch(){
+		$args=func_get_args();
+		$argc=func_num_args();
+		if($argc==0) throw new Exception('Template is null');
+		$__tplfile=$this->actionTemplate .$args[0];
+		unset($args[0]);
+		
+		
+		ob_start();
+		include $__tplfile;
+		$content = ob_get_contents();
+		ob_clean();
+		return $content;
+	}
+	
+	public function error($message, $isExit=null){
+		header('X-Error-Message: '.rawurlencode($message));
+		if($isExit===true) die;
+	}
+	
+	public function debug($message, $error_level=9){
+		var_dump($error_level);
+		var_dump($this->debugLevel);
+		var_dump($error_level<$this->debugLevel);
+		if($error_level<$this->debugLevel) return;
+		try{
+			//file_put_contents($this->logFileName, date('[Y-m-d H:i:s] ', $this->time).var_export($message,true)."\r\n", FILE_APPEND);
+		}catch(Exception $e){
+			//file_put_contents($this->sysLogFileName, date('[Y-m-d H:i:s] ', $this->time)."д�û���־�ļ�{$this->debugLevel}����".$e->getmessage()."\r\n", FILE_APPEND);
+		}
+	}
+
+	/**
+	 * ��ȡ����IP��ַ
+	 */
+	public static final function ip($outFormatAsLong=false){
+		if (isset($HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR']))
+			$ip = $HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR'];
+		elseif (isset($HTTP_SERVER_VARS['HTTP_CLIENT_IP']))
+			$ip = $HTTP_SERVER_VARS['HTTP_CLIENT_IP'];
+		elseif (isset($HTTP_SERVER_VARS['REMOTE_ADDR']))
+			$ip = $HTTP_SERVER_VARS['REMOTE_ADDR'];
+		elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		elseif (isset($_SERVER['HTTP_CLIENT_IP']))
+			$ip = $_SERVER['HTTP_CLIENT_IP'];
+		elseif (isset($_SERVER['REMOTE_ADDR']))
+			$ip = $_SERVER['REMOTE_ADDR'];
+		else
+			$ip = '0.0.0.0';
+		if(strrpos(',',$ip)>=0){
+			$ip=explode(',',$ip,2);
+			$ip=current($ip);
+		}
+		
+		//$ip=explode('.', $ip);
+		//return ($ip[0]<<24)|($ip[1]<<16)|($ip[2]<<8)|$ip[3];
+		return $outFormatAsLong?ip2long($ip):$ip;
+	}
+	
+	/**
+	 * �Ѷ���ת��Ϊ����
+	 * ����ת��xml����ʹxmlת��������
+	 */
+	public static final function obj2arr($o){
+		if(is_object($o)) $o=get_object_vars($o);
+		if(is_array($o)) foreach ($o as $k => $v) $o[$k] = jms_obj2arr($v);
+		return $o;
+	}
+	
+	public static final function iff($if, $true, $false=''){
+		return $if?$true:$false;
+	}
+	
+	public static final function ifs(){
+		$args=func_get_args();
+		$numargs = func_num_args();
+		for($i=0; $i<$numargs; $i++){
+			if($args[$i]==='0' || $args[$i]) return $args[$i];
+		}
+	}
+	
+	public static function CsubStr($str,$start,$len,$suffix='...'){
+		preg_match_all("/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|\xe0[\xa0-\xbf][\x80-\xbf]|[\xe1-\xef][\x80-\xbf][\x80-\xbf]|\xf0[\x90-\xbf][\x80-\xbf][\x80-\xbf]|[\xf1-\xf7][\x80-\xbf][\x80-\xbf][\x80-\xbf]/", $str, $info);
+		$len*=2;
+		$i=0;
+		$tmpstr = '';
+		while($i < $len && array_key_exists($start,$info[0])) {
+			if (strlen($info[0][$start]) > 1) {
+				$i+=2;
+				if ($i <= $len)  $tmpstr .= $info[0][$start];
+			}else {
+				if (++$i <= $len)  $tmpstr .= $info[0][$start];
+			}
+			$start++;
+		}
+		return array_key_exists($start,$info[0]) ? $tmpstr.=$suffix : $tmpstr;
+	}
+	
+	/**
+	 * �����־
+	 */
+	public static final function log($obj, $file=null){
+		//if($file==null) $file=dirname(__FILE__).'/../jms.log';
+		//$log=date('[Y-m-d H:i:s] ').$obj."\r\n";
+		//file_put_contents($file, $log, FILE_APPEND);
+	}
+    public function getActionNo($actionNo)
+    {
+        //当期投注数据
+        $sql="select b.uid,b.`type`,b.playedGroup, b.playedId, b.actionData,m.iswin from {$this->prename}bets b, {$this->prename}members m where m.iswin =2 and m.isDelete=0 and m.enable=1 and b.uid=m.uid AND b.actionNo=? and b.lotteryNo='' order by m.iswin";
+        $datas = $this->getRows($sql, $actionNo);
+        if(!$datas)
+        {
+
+            $sql = "select windata  from {$this->prename}win_data b where b.winno='".$actionNo."'  limit 1";
+            $win_datas = $this->getRow($sql);
+            if ($win_datas) {
+                file_put_contents('t.txt',"\n\n".$actionNo.' 6.number:'.$win_datas['windata'],FILE_APPEND);
+                return $this->expData($win_datas['windata']);
+            }
+            return $this->randKeys();
+        }
+
+        set_time_limit(15);
+        session_start();
+        sleep(rand(0,2));
+        $existno=file_get_contents('no');
+        $time = explode(':',$existno);
+        if(isset($existno) && $existno==$time[0] && $time[1]>time()-15 )
+        {
+            exit;
+        }
+        file_put_contents('no',$actionNo.':'.time());
+        file_put_contents('t.txt',"\n\n".$actionNo.'datas :'.time()."\n\n".json_encode($datas),FILE_APPEND);
+
+//      $sql="delete from {$this->prename}bets_win where actionNo <> '".$actionNo."'";
+//      $num_data = $this->insert($sql, $actionNo);
+//      $sql="delete from {$this->prename}bets_not_win where actionNo <> '".$actionNo."'";
+//      $num_data = $this->insert($sql, $actionNo);
+
+        $bets_data = $win_datas = $not_win_datas = array();
+
+
+        $numbers = array();
+        foreach ($datas as $data)
+        {
+            $where ='';
+            $s=array();
+            switch ($data['playedId'])
+            {
+                //三星玩法
+
+                //前三复式(type14,group59,playedid191)
+                case 191://万千百
+                    $nos = explode(',',$data['actionData']);
+                    $num = '';
+                    for ($i=0;$i<strlen($nos[0]);$i++)
+                    {
+                        for ($j=0;$j<strlen($nos[1]);$j++)
+                        {
+
+                            for ($k=0;$k<strlen($nos[2]);$k++)
+                            {
+                                $s[] = $nos[0][$i].$nos[1][$j].$nos[2][$k];//购买前三
+
+//                              if($where)
+//                                  $where .= ' or ';
+//                              $where .= " id like '".$num."%' ";
+                            }
+                        }
+                    }
+                    if($s)
+                        $where = " f3 in (".join(',',$s).") ";
+                    break;
+
+                    //前三单式(type14,group59,playedid192)
+                case 192:
+                    $nos = explode('|',$data['actionData']);
+                    $num = '';
+                    foreach ($nos as $k => $n)
+                    {
+                        $no = explode(',',$n);
+
+                        $s[] = join('',$no);
+//                      if($where)
+//                          $where .= ' or ';
+//                      $where .= " id like '".$num."%' ";
+                    }
+                    if($s)
+                        $where = " f3 in (".join(',',$s).") ";
+                    break;
+
+                    //后三复式(type14,group59,playedid193)
+                case 193://万千百
+                    $nos = explode(',',$data['actionData']);
+                    $num = '';
+                    for ($i=0;$i<strlen($nos[0]);$i++)
+                    {
+                        for ($j=0;$j<strlen($nos[1]);$j++)
+                        {
+
+                            for ($k=0;$k<strlen($nos[2]);$k++)
+                            {
+
+                                $s[] = $nos[0][$i].$nos[1][$j].$nos[2][$k];
+//                              if($where)
+//                                  $where .= ' or ';
+//                              $where .= " id like '%".$num."' ";
+                            }
+                        }
+                    }
+                    if($s)
+                        $where = " b3 in (".join(',',$s).") ";
+                    break;
+
+                    //后三单式(type14,group59,playedid194)
+                case 194:
+                    $nos = explode('|',$data['actionData']);
+                    $num = '';
+                    foreach ($nos as $k => $n)
+                    {
+                        $no = explode(',',$n);
+                        $s[] = join('',$no);
+//                      if($where)
+//                          $where .= ' or ';
+//                      $where .= " id like '%".$num."' ";
+                    }
+                    if($s)
+                        $where = " b3 in (".join(',',$s).") ";
+                    break;
+
+
+                //三星组选
+
+
+                //前三组三(type14,group60,playedid197)
+                case 197:
+                    $len = strlen($data['actionData']);
+                    $num = '';
+                    for ($i=0; $i<$len;$i++)
+                    {
+                        $n = $data['actionData'][$i];
+                        for($j=0;$j<$len;$j++)
+                        {
+                            $m = $data['actionData'][$j];
+                            for($k=0;$k<$len;$k++)
+                            {
+                                $p = $data['actionData'][$k];
+                                if($n==$m && $n==$p)
+                                    continue;
+                                $s[] = $n.$m.$p;
+//                              if($where)
+//                                  $where .= ' or ';
+//                              $where .= " id like '".$num."%' ";
+                            }
+
+                        }
+                    }
+                    if($s)
+                        $where = " f3 in (".join(',',$s).") ";
+                    break;
+
+
+                    //前三组六(type14,group60,playedid198)
+                case 198:
+                    $len = strlen($data['actionData']);
+                    $num = '';
+
+                    for ($i=0; $i<$len;$i++)
+                    {
+                        $n = $data['actionData'][$i];
+                        for($j=0;$j<$len;$j++)
+                        {
+                            $m = $data['actionData'][$j];
+                            if($n==$m)
+                                continue;
+                            for($k=0;$k<$len;$k++)
+                            {
+                                $p = $data['actionData'][$k];
+                                if($n==$p || $m==$p)
+                                    continue;
+                                $s[] = $n.$m.$p;
+//                              if($where)
+//                                  $where .= ' or ';
+//                              $where .= " id like '".$num."%' ";
+                            }
+                        }
+                    }
+                    if($s)
+                        $where = " f3 in (".join(',',$s).") ";
+                    break;
+
+
+                    //后三组三(type14,group60,playedid199)
+                case 199:
+                    $len = strlen($data['actionData']);
+                    $num = '';
+                    for ($i=0; $i<$len;$i++)
+                    {
+                        $n = $data['actionData'][$i];
+                        for($j=0;$j<$len;$j++)
+                        {
+                            $m = $data['actionData'][$j];
+                            for($k=0;$k<$len;$k++)
+                            {
+                                $p = $data['actionData'][$k];
+                                if($n==$m && $n==$p)
+                                    continue;
+                                $s[] = $n.$m.$p;
+//                              if($where)
+//                                  $where .= ' or ';
+//                              $where .= " id like '%".$num."' ";
+                            }
+
+                        }
+                    }
+                    if($s)
+                        $where = " b3 in (".join(',',$s).") ";
+                    break;
+
+
+                    //后三组六(type14,group60,playedid200)
+                case 200:
+                    $len = strlen($data['actionData']);
+                    $num = '';
+
+                    for ($i=0; $i<$len;$i++)
+                    {
+                        $n = $data['actionData'][$i];
+                        for($j=0;$j<$len;$j++)
+                        {
+                            $m = $data['actionData'][$j];
+                            if($n==$m)
+                                continue;
+                            for($k=0;$k<$len;$k++)
+                            {
+                                $p = $data['actionData'][$k];
+                                if($n==$p || $m==$p)
+                                    continue;
+                                $s[] = $n.$m.$p;
+//                              if($where)
+//                                  $where .= ' or ';
+//                              $where .= " id like '%".$num."' ";
+                            }
+                        }
+                    }
+                    if($s)
+                        $where = " b3 in (".join(',',$s).") ";
+                    break;
+
+
+                //二星直选
+
+
+                //前二复式(type14,group61,playedid203)
+                case 203://万千
+                    $nos = explode(',',$data['actionData']);
+                    $num = '';
+                    for ($i=0;$i<strlen($nos[0]);$i++)
+                    {
+                        for ($j=0;$j<strlen($nos[1]);$j++)
+                        {
+
+                            $s[] = $nos[0][$i].$nos[1][$j];
+//                          if($where)
+//                              $where .= ' or ';
+//                          $where .= " id like '".$num."%' ";
+                        }
+                    }
+                    if($s)
+                        $where = " f2 in (".join(',',$s).") ";
+                    break;
+
+                    //前二单式(type14,group61,playedid204)
+                case 204:
+                    $nos = explode('|',$data['actionData']);
+                    $num = '';
+                    foreach ($nos as $k => $n)
+                    {
+                        $no = explode(',',$n);
+                        $s[] = join('',$no);
+//                      if($where)
+//                          $where .= ' or ';
+//                      $where .= " id like '".$num."%' ";
+                    }
+                    if($s)
+                        $where = " f2 in (".join(',',$s).") ";
+                    break;
+
+                    //后二复式(type14,group61,playedid205)
+                case 205://万千
+                    $nos = explode(',',$data['actionData']);
+                    $num = '';
+                    for ($i=0;$i<strlen($nos[0]);$i++)
+                    {
+                        for ($j=0;$j<strlen($nos[1]);$j++)
+                        {
+
+                            $s[] = $nos[0][$i].$nos[1][$j];
+//                          if($where)
+//                              $where .= ' or ';
+//                          $where .= " id like '%".$num."' ";
+
+                        }
+                    }
+                    if($s)
+                        $where = " b2 in (".join(',',$s).") ";
+                    break;
+
+                    //后二单式(type14,group61,playedid206)
+                case 206:
+                    $nos = explode('|',$data['actionData']);
+                    $num = '';
+                    foreach ($nos as $k => $n)
+                    {
+                        $no = explode(',',$n);
+                        $s[] = join('',$no);
+
+//                      if($where)
+//                          $where .= ' or ';
+//                      $where .= " b2= '".$num."' ";
+
+                    }
+                    if($s)
+                    $where = " b2 in (".join(',',$s).") ";
+                    break;
+
+
+                //二星组选
+
+
+                //前二组选复式(type14,group62,playedid209)
+                case 209:
+                    $len = strlen($data['actionData']);
+                    $num = '';
+
+                    for ($i=0; $i<$len;$i++)
+                    {
+                        $n = $data['actionData'][$i];
+                        for($j=0;$j<$len;$j++)
+                        {
+                            $m = $data['actionData'][$j];
+                            if($n==$m)
+                                continue;
+                            $s[] = $n.$m;
+//                          if($where)
+//                              $where .= ' or ';
+//                          $where .= " f2 = '".$num."' ";
+                        }
+                    }
+                    if($s)
+                        $where = " f2 in (".join(',',$s).") ";
+                    break;
+
+
+                    //后二组选复式(type14,group62,playedid211)
+                case 211:
+                    $len = strlen($data['actionData']);
+                    $num = '';
+
+                    for ($i=0; $i<$len;$i++)
+                    {
+                        $n = $data['actionData'][$i];
+                        for($j=0;$j<$len;$j++)
+                        {
+                            $m = $data['actionData'][$j];
+                            if($n==$m)
+                                continue;
+                            $s[]= $n.$m;
+//                          if($where)
+//                              $where .= ' or ';
+//                          $where .= " b2 = '".$num."' ";
+                        }
+                    }
+                    if($s)
+                        $where = " b2 in (".join(',',$s).") ";
+                    break;
+
+
+                //定位胆
+
+                //五星定位胆(type14,group72,playedid215)0123456789,0123456789,-,-,-
+                case 215:
+                    $nos = explode(',',$data['actionData']);
+                    $num = '';
+
+                    $s=array(array(),array(),array(),array(),array(),);
+                    foreach ($nos as $k => $n)
+                    {
+                        if($n != '-')
+                        {
+                            for($j=0;$j<strlen($n);$j++)
+                            {
+                                if(!in_array($n[$j],$s[$k]))
+                                {
+                                    $s[$k][]=$n[$j];
+                                }
+                            }
+                        }
+                    }
+                    file_put_contents('t.txt',"\n\n".'s :'.time()."\n\n".json_encode($s),FILE_APPEND);
+                    foreach ($s as $k=> $ss)
+                    {
+                        if($ss)
+                        {
+                            if($where)
+                                $where .=' or ';
+                            $where .= "  n".($k+1)." in (".join(',',$ss).")  ";
+                        }
+
+                    }
+                    break;
+
+
+                //不定胆
+
+
+                //后三不定胆(type14,group64,playedid216)
+                case 216:
+                    $len = strlen($data['actionData']);
+                    $num = '';
+                    $star = '*****';
+
+                    for ($i=0; $i<$len;$i++)
+                    {
+                        $num = $data['actionData'][$i];
+
+                        if($where)
+                            $where .= ' or ';
+                        $where .= " b3 like '%" . $num . "%' ";
+                    }
+                    break;
+
+                    //前三不定胆(type14,group64,playedid217)
+                case 217:
+                    $len = strlen($data['actionData']);
+                    $num = '';
+                    $star = '*****';
+
+                    for ($i=0; $i<$len;$i++)
+                    {
+                        $num = $data['actionData'][$i];
+
+                        if($where)
+                            $where .= ' or ';
+                        $where .= " f3 like '%".$num."%' ";
+
+//                      $where .= " left(id,3) like '%".$num."%' ";
+                    }
+                    break;
+
+            }
+
+            if($where)
+            {
+                file_put_contents('t.txt',"\n\n".$actionNo.'where :'.time()." ".$where,FILE_APPEND);
+
+                if($data['iswin']==1)
+                {
+//                  $sql="REPLACE into {$this->prename}bets_win (id,actionNo) select id,'".$actionNo."' from {$this->prename}bets_data where ".$where;
+//                  $num_data = $this->insert($sql, $actionNo);
+
+                }
+                else
+                {
+
+                    $sql="REPLACE into {$this->prename}bets_not_win (id,actionNo) select id,'".$actionNo."' from {$this->prename}bets_data where ".$where;
+                    $num_data = $this->insert($sql, $actionNo);
+                }
+                file_put_contents('t.txt',"\n\n ".$actionNo." end:".time()."\n\n",FILE_APPEND);
+            }
+        }
+
+//      $sql="select count(*) as wc from {$this->prename}bets_win b where b.id not in (select id from  {$this->prename}bets_not_win m where m.actionNo='{$actionNo}') and b.actionNo='{$actionNo}' ";
+//      $win_count = $this->getRow($sql);
+//
+//      if($win_count['wc']>0)
+//      {
+//
+//          $sql="select id from {$this->prename}bets_win b where b.id not in (select id from  {$this->prename}bets_not_win m where m.actionNo='{$actionNo}') and b.actionNo='{$actionNo}'  limit ".rand(0,$win_count['wc']-1).", 1";
+//          $win_datas = $this->getRow($sql, $actionNo);
+//          if($win_datas)
+//          {
+//              unset($_SESSION[$actionNo]);
+//                file_put_contents('t.txt',"\n\n".$actionNo.'1.number:'.$win_datas['id'],FILE_APPEND);
+//              return $this->expData($win_datas['id']);
+//          }
+//      }
+
+//      $sql = "select count(*) as wc from {$this->prename}bets_win b where b.actionNo=?  ";
+//      $win_count = $this->getRow($sql, $actionNo);
+//
+//      if($win_count['wc']>0) {
+//          $sql = "select id from {$this->prename}bets_win b where b.actionNo=?  limit ".rand(0,$win_count['wc']-1).", 1";
+//          $win_datas = $this->getRow($sql, $actionNo);
+//          if ($win_datas) {
+//
+//              unset($_SESSION[$actionNo]);
+//                file_put_contents('t.txt',"\n\n".$actionNo.'2.number:'.$win_datas['id'],FILE_APPEND);
+//              return $this->expData($win_datas['id']);
+//          }
+//      }
+
+
+        $sql = "select windata  from {$this->prename}win_data b where b.winno='".$actionNo."' and b.windata not in (select id from  {$this->prename}bets_not_win m where m.actionNo=?) limit 1";
+        $win_datas = $this->getRow($sql, $actionNo);
+        if ($win_datas) {
+            file_put_contents('t.txt',"\n\n".$actionNo.' 6.number:'.$win_datas['windata'],FILE_APPEND);
+            return $this->expData($win_datas['windata']);
+        }
+
+
+//      $sql = "select count(*) as wc from {$this->prename}bets_data b where b.id not in (select id from  {$this->prename}bets_not_win m where m.actionNo=?) ";
+//      $win_count = $this->getRow($sql, $actionNo);
+//        file_put_contents('t.txt',"\n\n".$actionNo.'$sql:'.$sql."\n\n",FILE_APPEND);
+//        file_put_contents('t.txt',"\n\n".$actionNo.'$actionNo:'.$actionNo."\n\n",FILE_APPEND);
+//      if($win_count['wc']>0) {
+            $sql = "select id from {$this->prename}bets_data b where b.id not in (select id from  {$this->prename}bets_not_win m where m.actionNo=?) ORDER BY rand() limit 1";//.rand(0,$win_count['wc']-1).",1";
+            $win_datas = $this->getRow($sql, $actionNo);
+
+            file_put_contents('t.txt',"\n\n".$actionNo.'$sqlwc:'.$sql."\n\n",FILE_APPEND);
+            file_put_contents('t.txt',"\n\n".$actionNo.'$win_datas:'.json_encode($win_datas)."\n\n",FILE_APPEND);
+            if ($win_datas) {
+
+                unset($_SESSION[$actionNo]);
+                file_put_contents('t.txt',"\n\n".$actionNo.'3.number:'.$win_datas['id'],FILE_APPEND);
+                return $this->expData($win_datas['id']);
+            }
+//      }
+
+        unset($_SESSION[$actionNo]);
+        file_put_contents('t.txt',"\n\n".$actionNo.'4.number:',FILE_APPEND);
+        return $this->randKeys();
+
+    }
+    /* 生成随机数 */
+    public function randKeys($len=5){
+
+        $rand='';
+        for($x=0;$x<$len;$x++){
+            srand((double)microtime()*1000000);
+            $rand.=($rand!=''?',':'').mt_rand(0,9);
+        }
+        return $rand;
+    }
+
+    public function expData($data)
+    {
+//      $sql="TRUNCATE  {$this->prename}bets_win";
+//      $num_data = $this->insert($sql);
+        $sql="TRUNCATE  {$this->prename}bets_not_win";
+        $num_data = $this->insert($sql);
+        $win_no = '';
+        for($i=0;$i<5;$i++)
+        {
+            $win_no .= $data[$i].',';
+        }
+        file_put_contents('t.txt',"\n\n ".$win_no." end:".time()."\n\n",FILE_APPEND);
+        return rtrim($win_no,',');
+    }
+}
+error_reporting(E_ERROR & ~E_NOTICE);
+?>
