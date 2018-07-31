@@ -32,7 +32,7 @@
         <ul class="index_cont clearfix">
             <li>
                 <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/1/2" data-open="true">
-                    <img class="fl" src="/wjinc/default/images/index_logo1.jpg">
+                    <img class="fl" src="/wjinc/default/images/logo731.png">
                     <p class="fl">重庆时时彩</p>
                 </a>
             </li>
