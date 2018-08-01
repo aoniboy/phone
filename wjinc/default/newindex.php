@@ -38,6 +38,18 @@
             </li>
             <li>
                 <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/1/2" data-open="true">
+                    <img class="fl" src="/wjinc/default/images/logo732.png">
+                    <p class="fl">北京幸运28</p>
+                </a>
+            </li>
+            <li>
+                <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/1/2" data-open="true">
+                    <img class="fl" src="/wjinc/default/images/logo733.png">
+                    <p class="fl">加拿大幸运28</p>
+                </a>
+            </li>
+            <li>
+                <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/1/2" data-open="true">
                     <img class="fl" src="/wjinc/default/images/index_logo1.jpg">
                     <p class="fl">重庆时时彩</p>
                 </a>
