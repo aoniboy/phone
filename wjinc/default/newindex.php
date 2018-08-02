@@ -44,28 +44,30 @@
             </li>
             <li>
                 <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/27/59" data-open="true">
-                    <img class="fl" src="/wjinc/default/images/logo731.png">
+                    <img class="fl" src="/wjinc/default/images/index_logo27.jpg">
                     <p class="fl">幸运3分彩</p>
                 </a>
             </li>
             <li>
                 <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/1/2" data-open="true">
-                    <img class="fl" src="/wjinc/default/images/logo732.png">
+                    <img class="fl" src="/wjinc/default/images/index_logo54.jpg">
                     <p class="fl">北京幸运28</p>
                 </a>
             </li>
             <li>
                 <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/1/2" data-open="true">
-                    <img class="fl" src="/wjinc/default/images/logo733.png">
+                    <img class="fl" src="/wjinc/default/images/index_logo55.jpg">
                     <p class="fl">加拿大幸运28</p>
                 </a>
             </li>
+            <!--
             <li>
                 <a class="alink" href="javascript:void(0)" data-href="/index.php/index/game/20/26" data-open="false">
                     <img class="fl" src="/wjinc/default/images/index_logo20.jpg">
                     <p class="fl">北京PK10</p>
                 </a>
             </li>
+            -->
             
         </ul>
     </div>
