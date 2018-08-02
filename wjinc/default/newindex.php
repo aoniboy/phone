@@ -31,6 +31,18 @@
         <div class="title tc">热门彩票</div>
         <ul class="index_cont clearfix">
             <li>
+                <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/1/2" data-open="true">
+                    <img class="fl" src="/wjinc/default/images/index_logo1.jpg">
+                    <p class="fl">重庆时时彩</p>
+                </a>
+            </li>
+            <li>
+                <a class="alink" href="javascript:void(0)" data-href="/index.php/index/game/14/59" data-open="true">
+                    <img class="fl" src="/wjinc/default/images/index_logo14.jpg">
+                    <p class="fl">幸运300秒</p>
+                </a>
+            </li>
+            <li>
                 <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/27/59" data-open="true">
                     <img class="fl" src="/wjinc/default/images/logo731.png">
                     <p class="fl">幸运3分彩</p>
@@ -46,72 +58,6 @@
                 <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/1/2" data-open="true">
                     <img class="fl" src="/wjinc/default/images/logo733.png">
                     <p class="fl">加拿大幸运28</p>
-                </a>
-            </li>
-            <li>
-                <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/1/2" data-open="true">
-                    <img class="fl" src="/wjinc/default/images/index_logo1.jpg">
-                    <p class="fl">重庆时时彩</p>
-                </a>
-            </li>
-            <li>
-                <a class="alink" href="javascript:void(0)" data-href="/index.php/index/game/14/59" data-open="true">
-                    <img class="fl" src="/wjinc/default/images/index_logo14.jpg">
-                    <p class="fl">幸运300秒</p>
-                </a>
-            </li>
-            <li>
-                <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/12/2" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo12.jpg">
-                    <p class="fl">新疆时时彩</p>
-                </a>
-            </li>
-            <li>
-                <a class="alink" href="javascript:void(0)" data-href="/index.php/index/game/6/10" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo6.jpg">
-                    <p class="fl">广东11选5</p>
-                </a>
-            </li>
-            <li>
-                <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/7/10" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo7.jpg">
-                    <p class="fl">山东11选5</p>
-                </a>
-            </li>
-            <li>
-                <a class="alink" href="javascript:void(0)" data-href="/index.php/index/game/16/10" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo16.jpg">
-                    <p class="fl">江西多乐彩</p>
-                </a>
-            </li>
-            <li>
-                <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/25/39" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo25.jpg">
-                    <p class="fl">江苏快3</p>
-                </a>
-            </li>
-            <li>
-                <a class="alink" href="javascript:void(0)" data-href="/index.php/index/game/52/39" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo52.jpg">
-                    <p class="fl">广西快3</p>
-                </a>
-            </li>
-            <li>
-                <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/50/39" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo50.jpg">
-                    <p class="fl">湖北快3</p>
-                </a>
-            </li>
-            <li>
-                <a class="alink" href="javascript:void(0)" data-href="/index.php/index/game/9/16" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo9.jpg">
-                    <p class="fl">福彩3D</p>
-                </a>
-            </li>
-            <li>
-                <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/10/16" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo10.jpg">
-                    <p class="fl">体彩P3</p>
                 </a>
             </li>
             <li>
