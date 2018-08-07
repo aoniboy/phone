@@ -11,7 +11,7 @@
 </head>
 <body class="body">
 
-<div class="wrap_box">
+<div class="wrap_box newdh">
 	<div class="topfix">
 		<div class="top dx tc">
 			<div class="fx top_bor">
@@ -24,7 +24,7 @@
 			</div>
 		</div>
 		<ul class="toplist">
-			<li class="top_title clearfix f26">
+			<li class="top_title clearfix f24">
 				<span class="col666 qi_mal">第<span class="qishu2">2309331</span>期</span>
 				<span class="qi_num">5</span>
 				<span class="col_red">+</span>
