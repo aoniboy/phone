@@ -112,7 +112,7 @@
 			<li class="d_left">
 				<div class="tc col999 f24">2018-07-22  11:52</div>
 				<div class="clearfix d_content">
-					<div class="d_float"><img class="tx" src="images/tx.png"></div>
+					<div class="d_float"><img class="tx" src="/wjinc/default/images/tx.png"></div>
 					<div class="d_float d_w">
 						<p class="col999 f24">王恩龙</p>
 						<div class="bg_red">
@@ -136,7 +136,7 @@
 			
 		</div>
 	</div>
-	<div class="tc fff tz_bg"><div class="tz_btn">投注</div></div>
+	<div class="tc fff tz_bg"><div class="tz_btns tc">投注</div></div>
 	<div class="pop_wrap hide">
 		<div class="mask"></div>
 		<div class="pop_box ">
