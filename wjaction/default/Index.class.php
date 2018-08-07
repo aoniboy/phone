@@ -196,6 +196,10 @@ class Index extends WebLoginBase{
 		$this->type=intval($type);
 		$this->display('index/inc_data_history_left.php');
 	}
+    
+	public final function newdh(){
+		$this->display('newdh/index.php');
+	}
 	
 
 
