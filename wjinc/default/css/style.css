@@ -356,7 +356,7 @@ table {table-layout: fixed;}
 .newdh .d_text1,.d_text2{margin-top: .2rem;}
 .newdh .top_text{ padding-bottom: 1.4rem }
 .newdh .tz_bg{position: fixed;left:0;bottom:0;width: 100%; background:#f4f4f4;}
-.newdh .tz_btn{ background: #fe4436;  line-height: .8rem; margin:0 .2rem .2rem .2rem;border-radius: .1rem;border: 1px solid #fe4436; }
+.newdh .tz_btns{ background: #fe4436;  line-height: .8rem; margin:0 .2rem .2rem .2rem;border-radius: .1rem;border: 1px solid #fe4436; }
 .newdh .pop_box{ position: fixed;left:0;bottom:0; background: #f4f4f4;width: 100%; padding:.2rem 0;}
 .newdh .wf_pos{ position: relative; }
 .newdh .wf_btn1{position: absolute;left:20%;top:0; font-size: .4rem; margin-top: -.1rem; width:.1rem;}

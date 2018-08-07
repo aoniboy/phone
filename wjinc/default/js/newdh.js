@@ -43,7 +43,7 @@ var newdh = {
             console.log($(".form").serialize())
   
         })
-        $(".tz_btn").click(function(){
+        $(".tz_btns").click(function(){
             $(".pop_wrap").show();
         })
         $(".mask").click(function(){
