@@ -398,7 +398,6 @@
 							'	</div>'+
 							'</li>'+
 					$(".d_box").append(html);
-					$(".d_box").append(html);
                 }
                 if(type == 'system'){
                 	var html ='';
