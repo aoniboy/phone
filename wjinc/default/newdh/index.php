@@ -340,14 +340,14 @@
 	.hi_mask{position: fixed;left:0;top:0;width:100%; height:100%; background: rgba(0,0,0,0.5); }
 	.hi_t{ position: fixed;left:50%;top:50%;width:80%;transform: translate(-50%,-50%); background:#fff; border-radius: .2rem; padding:.2rem 0; }
 	.hi_msg{ padding:.2rem 0; }
-	.ht_btn{  color:#0079fe;border-top:1px solid #eee; padding:.2rem 0 0 0; }
+	.hi_btn{  color:#0079fe;border-top:1px solid #eee; padding:.2rem 0 0 0; }
 	</style>
-	<div class="hi_pop">
+	<div class="hi_pop hide">
 		<div class="hi_mask"></div>
 		<div class="hi_t">
 			<div class="tc f30">提示</div>
 			<div class="hi_msg tc f24">请填写投注金额</div>
-			<div class="ht_btn tc">确定</div>
+			<div class="hi_btn tc">确定</div>
 		</div>
 	</div>
 </div>		
@@ -463,6 +463,11 @@
             alert('该浏览器不支持web socket');
         }
 
+        //提交
+        $(".sure_btn").click(function(){
+            console.log($(".form").serialize())
+  
+        })
     });    
 </script> 
 </body>

@@ -39,10 +39,6 @@ var newdh = {
                 $(this).val(1)
             }
         })
-        $(".sure_btn").click(function(){
-            console.log($(".form").serialize())
-  
-        })
         $(".tz_btns").click(function(){
             $(".pop_wrap").show();
         })
@@ -77,7 +73,9 @@ var newdh = {
                
             }
         })
-
+        $(".ht_btn").click(function(){
+            $(".hi_pop").hide();
+        })
     },
 }
 
