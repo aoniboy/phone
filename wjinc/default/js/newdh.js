@@ -73,7 +73,7 @@ var newdh = {
                
             }
         })
-        $(".ht_btn").click(function(){
+        $(".hi_btn").click(function(){
             $(".hi_pop").hide();
         })
     },
