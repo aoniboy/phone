@@ -441,6 +441,7 @@
                     input: input
                 };
                 try{  
+                	console.log(msg);
                     websocket.send(JSON.stringify(msg)); 
                 } catch(ex) {  
                     console.log(ex);
