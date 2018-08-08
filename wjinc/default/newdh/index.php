@@ -396,7 +396,7 @@
 							'			</div>'+
 							'		</div>'+
 							'	</div>'+
-							'</li>'+
+							'</li>';
 					$(".d_box").append(html);
                 }
                 if(type == 'system'){
