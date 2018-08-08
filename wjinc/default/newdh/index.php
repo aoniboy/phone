@@ -446,6 +446,7 @@
                 try{  
                 	console.log(msg);
                     websocket.send(JSON.stringify(msg)); 
+                    $(".pop_wrap").hide();
                 } catch(ex) {  
                     console.log(ex);
                 }  
