@@ -370,12 +370,13 @@
             websocket.onmessage = function(event) {
                 var msg = JSON.parse(event.data); //解析收到的json消息数据
 
+                var type = msg.type;
                 var number = msg.number;
                 var val = msg.val;
                 var title = msg.title;
                 var input = msg.input;
                 i++;
-                console.log(111111)
+                console.log(msg)
                 if(type == 'usermsg'){
                 	var html ='';
 					html+=  '<li class="d_right">'
@@ -472,6 +473,26 @@
         $(".sure_btn").click(function(){
             send();
   
+                	var html ='';
+					html+=  '<li class="d_right">'
+							'	<div class="tc col999 f24">2018-07-22  11:52</div>'
+							'	<div class="clearfix d_content">'
+							'		<div class=" d_float"><img class="tx" src="/wjinc/default/images//tx.png"></div>'
+							'		<div class=" d_float d_w">'
+							'			<p class="col999 f24 tr">王恩龙</p>'
+							'			<div class="bg_red">'
+							'				<div class="f30 clearfix fff d_title">'
+							'					<div class="fl">'
+							'						<span class="iconfont icon-shijian"></span> 第<span>2309331期</span>'								
+							'					</div>'
+							'					<div class="fr">投注类型：<span>双</span></div>'
+							'				</div>'
+							'				<div class="f40 fff"><span class="iconfont icon-qiandai1 f40"></span> 100元</div>'
+							'			</div>'
+							'		</div>'
+							'	</div>'
+							'</li>'
+					$(".d_box").append(html);
         })
     });    
 </script> 
