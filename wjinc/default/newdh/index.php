@@ -321,13 +321,14 @@
 				</li>
 			</ul>
 			<form class="form">
+				<input type="hidden" class="f_number" name="number" value="2309331">
 				<input type="hidden" class="f_title" name="name" value="">
 				<input type="hidden" class="f_val" name="val" value="">
 				<div class="pos_bs clearfix f30">
 					<div class="fl">倍数</div>
 					<div class="fl pos_b1">
 						<span class="fl iconfont icon-jianhao f36 col999 js_jia" data-value="jian"></span>
-						<input class="fl col666 cp_input" type="tel" name="beishu" value="1">
+						<input class="fl col666 cp_input f_input" type="tel" name="beishu" value="1">
 						<span class="fl iconfont icon-untitled44 f36 col999 js_jia" data-value="jia"></span>
 					</div>
 					<div class="sure_btn fr tc fff">确认投注</div>
@@ -424,19 +425,20 @@
             }
 
             function send(){
-                var name = $('#name').val();
-                var message = $('#message').val();
-                if(!name){
-                    alert('请输入用户名!');
-                    return false;
-                }
-                if(!message){
-                    alert('发送消息不能为空!');
+                var number = $('.f_number').val();
+                var val = $('.f_val').val();
+                var title = $('.f_title').val();
+                var input = $('.f_input').val();
+                if(!title){
+                	$(".hi_msg").text('请选择投注内容');
+                    $(".hi_pop").show();
                     return false;
                 }
                 var msg = {
-                    message: message,
-                    name: name
+                    number: number,
+                    val: val,
+                    title: title,
+                    input: input
                 };
                 try{  
                     websocket.send(JSON.stringify(msg)); 
@@ -445,18 +447,18 @@
                 }  
             }
 
-            //按下enter键发送消息
-            $(window).keydown(function(event){
-                if(event.keyCode == 13){
-                    console.log('user enter');
-                    send();
-                }
-            });
+            // //按下enter键发送消息
+            // $(window).keydown(function(event){
+            //     if(event.keyCode == 13){
+            //         console.log('user enter');
+            //         send();
+            //     }
+            // });
 
-            //点发送按钮发送消息
-            $('.send').bind('click',function(){
-                send();
-            });
+            // //点发送按钮发送消息
+            // $('.send').bind('click',function(){
+            //     send();
+            // });
             
         }
         else{
@@ -465,7 +467,7 @@
 
         //提交
         $(".sure_btn").click(function(){
-            console.log($(".form").serialize())
+            send();
   
         })
     });    
