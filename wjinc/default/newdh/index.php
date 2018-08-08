@@ -388,9 +388,9 @@
 							'			<div class="bg_red">'+
 							'				<div class="f30 clearfix fff d_title">'+
 							'					<div class="fl">'+
-							'						<span class="iconfont icon-shijian"></span> 第<span>2309331期</span>'+			
+							'						<span class="iconfont icon-shijian"></span> 第<span>'+msg.number+'期</span>'+			
 							'					</div>'+
-							'					<div class="fr">投注类型：<span>双</span></div>'+
+							'					<div class="fr">投注类型：<span>'+msg.title+'</span></div>'+
 							'				</div>'+
 							'				<div class="f40 fff"><span class="iconfont icon-qiandai1 f40"></span> 100元</div>'+
 							'			</div>'+
