@@ -370,10 +370,12 @@
             websocket.onmessage = function(event) {
                 var msg = JSON.parse(event.data); //解析收到的json消息数据
 
-                var type = msg.type; // 消息类型
-                var umsg = msg.message; //消息文本
-                var uname = msg.name; //发送人
+                var number = msg.number;
+                var val = msg.val;
+                var title = msg.title;
+                var input = msg.input;
                 i++;
+                console.log(111111)
                 if(type == 'usermsg'){
                 	var html ='';
 					html+=  '<li class="d_right">'
