@@ -335,9 +335,135 @@
 			</form>
 		</div>
 	</div>
+	<style>
+	.hi_pop{ position: fixed;left:0;top:0;width:100%; height:100%; }
+	.hi_mask{position: fixed;left:0;top:0;width:100%; height:100%; background: rgba(0,0,0,0.5); }
+	.hi_t{ position: fixed;left:50%;top:50%;width:80%;transform: translate(-50%,-50%); background:#fff; border-radius: .2rem; padding:.2rem 0; }
+	.hi_msg{ padding:.2rem 0; }
+	.ht_btn{  color:#0079fe;border-top:1px solid #eee; padding:.2rem 0 0 0; }
+	</style>
+	<div class="hi_pop">
+		<div class="hi_mask"></div>
+		<div class="hi_t">
+			<div class="tc f30">提示</div>
+			<div class="hi_msg tc f24">请填写投注金额</div>
+			<div class="ht_btn tc">确定</div>
+		</div>
+	</div>
 </div>		
-
-
 <script src="/wjinc/default/js/newdh.js<?=$this->sversion?>"></script>
+<script>
+    $(function(){
+        var wsurl = 'ws://47.74.242.161:9009/socket.php';
+        var websocket;
+        var i = 0;
+        if(window.WebSocket){
+            websocket = new WebSocket(wsurl);
+
+            //连接建立
+            websocket.onopen = function(evevt){
+                console.log("Connected to WebSocket server.");
+                // $('.show-area').append('<p class="bg-info message"><i class="glyphicon glyphicon-info-sign"></i>Connected to WebSocket server!</p>');
+            }
+            //收到消息
+            websocket.onmessage = function(event) {
+                var msg = JSON.parse(event.data); //解析收到的json消息数据
+
+                var type = msg.type; // 消息类型
+                var umsg = msg.message; //消息文本
+                var uname = msg.name; //发送人
+                i++;
+                if(type == 'usermsg'){
+                	var html ='';
+					html+=  '<li class="d_right">'
+							'	<div class="tc col999 f24">2018-07-22  11:52</div>'
+							'	<div class="clearfix d_content">'
+							'		<div class=" d_float"><img class="tx" src="/wjinc/default/images//tx.png"></div>'
+							'		<div class=" d_float d_w">'
+							'			<p class="col999 f24 tr">王恩龙</p>'
+							'			<div class="bg_red">'
+							'				<div class="f30 clearfix fff d_title">'
+							'					<div class="fl">'
+							'						<span class="iconfont icon-shijian"></span> 第<span>2309331期</span>'								
+							'					</div>'
+							'					<div class="fr">投注类型：<span>双</span></div>'
+							'				</div>'
+							'				<div class="f40 fff"><span class="iconfont icon-qiandai1 f40"></span> 100元</div>'
+							'			</div>'
+							'		</div>'
+							'	</div>'
+							'</li>'
+					$(".d_box").append(html);
+                }
+                if(type == 'system'){
+                	var html ='';
+					html+=  '<li class="d_center">'
+							'	<div class="d_text2"><span class="col_red">[2309331期]已封盘</span>，下注结果已系统开奖为标准，如有异议，请及时联系客服</div>'
+							'</li>'
+					$(".d_box").append(html);
+                }
+                
+                $('#message').val(''); 
+                window.location.hash = '#'+i;
+            }
+
+            //发生错误
+            websocket.onerror = function(event){
+                i++;
+                console.log("Connected to WebSocket server error");
+                $('.show-area').append('<p class="bg-danger message"><a name="'+i+'"></a><i class="glyphicon glyphicon-info-sign"></i>Connect to WebSocket server error.</p>');
+                window.location.hash = '#'+i;
+            }
+
+            //连接关闭
+            websocket.onclose = function(event){
+                i++;
+                console.log('websocket Connection Closed. ');
+                $('.show-area').append('<p class="bg-warning message"><a name="'+i+'"></a><i class="glyphicon glyphicon-info-sign"></i>websocket Connection Closed.</p>');
+                window.location.hash = '#'+i;
+            }
+
+            function send(){
+                var name = $('#name').val();
+                var message = $('#message').val();
+                if(!name){
+                    alert('请输入用户名!');
+                    return false;
+                }
+                if(!message){
+                    alert('发送消息不能为空!');
+                    return false;
+                }
+                var msg = {
+                    message: message,
+                    name: name
+                };
+                try{  
+                    websocket.send(JSON.stringify(msg)); 
+                } catch(ex) {  
+                    console.log(ex);
+                }  
+            }
+
+            //按下enter键发送消息
+            $(window).keydown(function(event){
+                if(event.keyCode == 13){
+                    console.log('user enter');
+                    send();
+                }
+            });
+
+            //点发送按钮发送消息
+            $('.send').bind('click',function(){
+                send();
+            });
+            
+        }
+        else{
+            alert('该浏览器不支持web socket');
+        }
+
+    });    
+</script> 
 </body>
 </html>
