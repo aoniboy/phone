@@ -52,7 +52,7 @@ while (true) {
             $number = $tst_msg->number; 
             $input = $tst_msg->input; 
             
-            //把消息发送回所有连接的 client 上去
+            //把消息发送回所有连接的 client 上去;
             $response_text = mask(json_encode(array('type'=>'usermsg', 'title'=>$title, 'val'=>$val,'number'=>$number,'input'=>$input)));
             send_message($response_text);
             break 2; 
