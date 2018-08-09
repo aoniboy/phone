@@ -64,7 +64,7 @@
 			<li class="d_left">
 				<div class="tc col999 f24">2018-07-22  11:52</div>
 				<div class="clearfix d_content">
-					<div class="d_float"><img class="tx" src="/wjinc/default/images//tx.png"></div>
+					<div class="d_float"><img class="tx" src="/wjinc/default/images/tx.png"></div>
 					<div class="d_float d_w">
 						<p class="col999 f24">王恩龙</p>
 						<div class="bg_red">
@@ -82,8 +82,8 @@
 			<li class="d_right">
 				<div class="tc col999 f24">2018-07-22  11:52</div>
 				<div class="clearfix d_content">
-					<div class=" d_float"><img class="tx" src="/wjinc/default/images//tx.png"></div>
-					<div class=" d_float d_w">
+					<div class="d_float"><img class="tx" src="/wjinc/default/images/tx.png"></div>
+					<div class="d_float d_w">
 						<p class="col999 f24 tr">王恩龙</p>
 						<div class="bg_red">
 							<div class="f30 clearfix fff d_title">
@@ -385,7 +385,7 @@
 					html+=  '<li class="d_right">'+
 							'	<div class="tc col999 f24">'+msg.time+'</div>'+
 							'	<div class="clearfix d_content">'+
-							'		<div class=" d_float"><img class="tx" src="/wjinc/default/images//tx.png"></div>'+
+							'		<div class=" d_float"><img class="tx" src="/wjinc/default/images/tx.png"></div>'+
 							'		<div class=" d_float d_w">'+
 							'			<p class="col999 f24 tr">'+msg.name+'</p>'+
 							'			<div class="bg_red">'+
@@ -412,16 +412,35 @@
                                 '</li>'
                     }else if(cls==2){
                         html+=  '<li class="d_center">'+
-                                '	<div class="f30 d_text2"><span class="col_red">[2309331期]</span>单注<span class="col_red">1元</span>起，<span class="col_red">20000元</span>封顶，总注<span class="col_red">3000000元</span>封顶<br><span class="col_red">★★现状可以开始投注★★</span></div>'+
+                                '	<div class="f30 d_text2"><span class="col_red">['+msg.number+'期]</span>单注<span class="col_red">'+msg.single+'元</span>起，<span class="col_red">'+msg.cap+'元</span>封顶，总注<span class="col_red">'+msg.allnum+'元</span>封顶<br><span class="col_red">★★现状可以开始投注★★</span></div>'+
                                 '</li>'
                     }else if(cls==3){
                         html+=  '<li class="d_center">'+
-                                '	<div class="d_text2"><span class="col_red">[2309331期]已封盘</span>，下注结果已系统开奖为标准，如有异议，请及时联系客服</div>'+
+                                '	<div class="d_text2"><span class="col_red">['+msg.number+'期]已封盘</span>，下注结果已系统开奖为标准，如有异议，请及时联系客服</div>'+
                                 '</li>'
                     }else if(cls==4){
                         html+=  '<li class="d_center">'+
-                                '	<div class="d_text2"><span class="col_red">[2309331期]</span>恭喜<span class="col_red">led888</span>已中2倍，共获得<span class="col_red">200元</span></div>'+
+                                '	<div class="d_text2"><span class="col_red">['+msg.number+'期]</span>恭喜<span class="col_red">'+msg.name+'</span>已中2倍，共获得<span class="col_red">'+msg.winmoney+'元</span></div>'+
                                 '</li>'
+                    }else if(cls==5){      
+						html+=  '<li class="d_left">'+
+								'	<div class="tc col999 f24">'+msg.time+'</div>'+
+								'	<div class="clearfix d_content">'+
+								'		<div class=" d_float"><img class="tx" src="/wjinc/default/images/tx.png"></div>'+
+								'		<div class=" d_float d_w">'+
+								'			<p class="col999 f24">'+msg.name+'</p>'+
+								'			<div class="bg_red">'+
+								'				<div class="f30 clearfix fff d_title">'+
+								'					<div class="fl">'+
+								'						<span class="iconfont icon-shijian"></span> 第<span>'+msg.number+'期</span>'+			
+								'					</div>'+
+								'					<div class="fr">投注类型：<span>'+msg.title+'</span></div>'+
+								'				</div>'+
+								'				<div class="f40 fff"><span class="iconfont icon-qiandai1 f40"></span> '+msg.money+'元</div>'+
+								'			</div>'+
+								'		</div>'+
+								'	</div>'+
+								'</li>';
                     }
 					$(".d_box").append(html);
                 }
