@@ -356,7 +356,7 @@
 <script src="/wjinc/default/js/newdh.js<?=$this->sversion?>"></script>
 <script>
     $(function(){
-        var wsurl = 'ws://47.74.242.161:9009/wjaction/Newdh.class.php';
+        var wsurl = 'ws://47.74.242.161:9009/socket.php';
         var websocket;
         var i = 0;
         if(window.WebSocket){
