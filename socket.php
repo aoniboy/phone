@@ -47,9 +47,20 @@ while (true) {
             $val = $tst_msg->val; 
             $number = $tst_msg->number; 
             $input = $tst_msg->input; 
-            
+            $name = $tst_msg->name;
+            $money = $tst_msg->money;
+            $time = date('Y-m-d H:i:s',time());
             //把消息发送回所有连接的 client 上去;
-            $response_text = mask(json_encode(array('type'=>'usermsg', 'title'=>$title, 'val'=>$val,'number'=>$number,'input'=>$input)));
+            $response_text = mask(json_encode(array(
+                                                'type'=>'usermsg', 
+                                                'title'=>$title, 
+                                                'val'=>$val,
+                                                'number'=>$number,
+                                                'input'=>$input,
+                                                'name'=>$name,
+                                                'money'=>$money,
+                                                'time'=>$time
+                                             )));
             send_message($response_text);
             break 2; 
         }

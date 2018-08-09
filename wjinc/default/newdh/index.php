@@ -10,7 +10,7 @@
 <!--     <script src="/wjinc/default/js/scroll.js<?=$this->sversion?>"></script> -->
 </head>
 <body class="body">
-
+<input class="f_name" type="hidden" value="<?=$this->user['nickname']?>">
 <div class="wrap_box newdh">
 	<div class="topfix">
 		<div class="top dx tc">
@@ -324,11 +324,12 @@
 				<input type="hidden" class="f_number" name="number" value="2309331">
 				<input type="hidden" class="f_title" name="name" value="">
 				<input type="hidden" class="f_val" name="val" value="">
+                <input type="hidden" class="f_dan" name="beishu" value="2">
 				<div class="pos_bs clearfix f30">
 					<div class="fl">倍数</div>
 					<div class="fl pos_b1">
 						<span class="fl iconfont icon-jianhao f36 col999 js_jia" data-value="jian"></span>
-						<input class="fl col666 cp_input f_input" type="tel" name="beishu" value="1">
+						<input class="fl col666 cp_input f_input f_beishu" type="tel" name="beishu" value="1">
 						<span class="fl iconfont icon-untitled44 f36 col999 js_jia" data-value="jia"></span>
 					</div>
 					<div class="sure_btn fr tc fff">确认投注</div>
@@ -369,22 +370,16 @@
             //收到消息
             websocket.onmessage = function(event) {
                 var msg = JSON.parse(event.data); //解析收到的json消息数据
-
-                var type = msg.type;
-                var number = msg.number;
-                var val = msg.val;
-                var title = msg.title;
-                var input = msg.input;
                 i++;
                 console.log(msg)
                 if(type == 'usermsg'){
                 	var html ='';
 					html+=  '<li class="d_right">'+
-							'	<div class="tc col999 f24">2018-07-22  11:52</div>'+
+							'	<div class="tc col999 f24">'+msg.time+'</div>'+
 							'	<div class="clearfix d_content">'+
 							'		<div class=" d_float"><img class="tx" src="/wjinc/default/images//tx.png"></div>'+
 							'		<div class=" d_float d_w">'+
-							'			<p class="col999 f24 tr">王恩龙</p>'+
+							'			<p class="col999 f24 tr">'+msg.name+'</p>'+
 							'			<div class="bg_red">'+
 							'				<div class="f30 clearfix fff d_title">'+
 							'					<div class="fl">'+
@@ -392,7 +387,7 @@
 							'					</div>'+
 							'					<div class="fr">投注类型：<span>'+msg.title+'</span></div>'+
 							'				</div>'+
-							'				<div class="f40 fff"><span class="iconfont icon-qiandai1 f40"></span> 100元</div>'+
+							'				<div class="f40 fff"><span class="iconfont icon-qiandai1 f40"></span>'+msg.money+'元</div>'+
 							'			</div>'+
 							'		</div>'+
 							'	</div>'+
@@ -432,6 +427,10 @@
                 var val = $('.f_val').val();
                 var title = $('.f_title').val();
                 var input = $('.f_input').val();
+                var beishu = $('.f_beishu').val();
+                var dan = $('.f_dan').val();
+                var name = $('.f_name').val();
+                var money = dan*beishu;
                 if(!title){
                 	$(".hi_msg").text('请选择投注内容');
                     $(".hi_pop").show();
@@ -441,7 +440,11 @@
                     number: number,
                     val: val,
                     title: title,
-                    input: input
+                    input: input,
+                    name: name,
+                    money: money,
+                    beishu: beishu,
+                    dan:dan,
                 };
                 try{  
                 	console.log(msg);
@@ -452,18 +455,6 @@
                 }  
             }
 
-            // //按下enter键发送消息
-            // $(window).keydown(function(event){
-            //     if(event.keyCode == 13){
-            //         console.log('user enter');
-            //         send();
-            //     }
-            // });
-
-            // //点发送按钮发送消息
-            // $('.send').bind('click',function(){
-            //     send();
-            // });
             
         }
         else{
