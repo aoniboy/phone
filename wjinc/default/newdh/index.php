@@ -160,13 +160,13 @@
 							</li>
 							<li class="tc fl">
 								<div class="wf_z">
-								<div>小</div>
+								<div class="c_title" data-title="小">小</div>
 								<div class="col_red c_val" data-value="123">1.95</div>
 								</div>
 							</li>
 							<li class="tc fl">
 								<div class="wf_z">
-								<div class="c_title" data-title="小">小</div>
+								<div class="c_title" data-title="单">单</div>
 								<div class="col_red c_val" data-value="123">1.95</div>
 								</div>
 							</li>
@@ -365,11 +365,19 @@
             //连接建立
             websocket.onopen = function(evevt){
                 console.log("Connected to WebSocket server.");
+        //用户进来
+        var name = $('.f_name').val();
+        var msg ={
+            type:'system',
+            name:name
+        };
+        websocket.send(JSON.stringify(msg)); 
                 // $('.show-area').append('<p class="bg-info message"><i class="glyphicon glyphicon-info-sign"></i>Connected to WebSocket server!</p>');
             }
             //收到消息
             websocket.onmessage = function(event) {
                 var msg = JSON.parse(event.data); //解析收到的json消息数据
+                var type = msg.type; 
                 i++;
                 console.log(msg)
                 if(type == 'usermsg'){
@@ -387,7 +395,7 @@
 							'					</div>'+
 							'					<div class="fr">投注类型：<span>'+msg.title+'</span></div>'+
 							'				</div>'+
-							'				<div class="f40 fff"><span class="iconfont icon-qiandai1 f40"></span>'+msg.money+'元</div>'+
+							'				<div class="f40 fff"><span class="iconfont icon-qiandai1 f40"></span> '+msg.money+'元</div>'+
 							'			</div>'+
 							'		</div>'+
 							'	</div>'+
@@ -395,13 +403,29 @@
 					$(".d_box").append(html);
                 }
                 if(type == 'system'){
+                    var cls = msg.class;
                 	var html ='';
-					html+=  '<li class="d_center">'
-							'	<div class="d_text2"><span class="col_red">[2309331期]已封盘</span>，下注结果已系统开奖为标准，如有异议，请及时联系客服</div>'
-							'</li>'
+                    console.log(111);
+                    if(cls==1){
+                        html+=  '<li class="d_center">'+
+                                '	<div class="f24 tc"><div class="d_text1">欢迎<span class="col_red">'+msg.name+'</span>进入房间</div></div>'+
+                                '</li>'
+                    }else if(cls==2){
+                        html+=  '<li class="d_center">'+
+                                '	<div class="f30 d_text2"><span class="col_red">[2309331期]</span>单注<span class="col_red">1元</span>起，<span class="col_red">20000元</span>封顶，总注<span class="col_red">3000000元</span>封顶<br><span class="col_red">★★现状可以开始投注★★</span></div>'+
+                                '</li>'
+                    }else if(cls==3){
+                        html+=  '<li class="d_center">'+
+                                '	<div class="d_text2"><span class="col_red">[2309331期]已封盘</span>，下注结果已系统开奖为标准，如有异议，请及时联系客服</div>'+
+                                '</li>'
+                    }else if(cls==4){
+                        html+=  '<li class="d_center">'+
+                                '	<div class="d_text2"><span class="col_red">[2309331期]</span>恭喜<span class="col_red">led888</span>已中2倍，共获得<span class="col_red">200元</span></div>'+
+                                '</li>'
+                    }
 					$(".d_box").append(html);
                 }
-                
+                window.scrollTo(0,document.body.scrollHeight); 
                 $('#message').val(''); 
                 window.location.hash = '#'+i;
             }
@@ -445,6 +469,7 @@
                     money: money,
                     beishu: beishu,
                     dan:dan,
+                    type:'usermsg'
                 };
                 try{  
                 	console.log(msg);
@@ -460,7 +485,6 @@
         else{
             alert('该浏览器不支持web socket');
         }
-
         //提交
         $(".sure_btn").click(function(){
             send();

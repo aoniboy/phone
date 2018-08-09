@@ -50,17 +50,27 @@ while (true) {
             $name = $tst_msg->name;
             $money = $tst_msg->money;
             $time = date('Y-m-d H:i:s',time());
+            $type = $tst_msg->type;
             //把消息发送回所有连接的 client 上去;
-            $response_text = mask(json_encode(array(
-                                                'type'=>'usermsg', 
-                                                'title'=>$title, 
-                                                'val'=>$val,
-                                                'number'=>$number,
-                                                'input'=>$input,
-                                                'name'=>$name,
-                                                'money'=>$money,
-                                                'time'=>$time
-                                             )));
+            if($type=="usermsg"){
+                $response_text = mask(json_encode(array(
+                                                    'type'=>$type, 
+                                                    'title'=>$title, 
+                                                    'val'=>$val,
+                                                    'number'=>$number,
+                                                    'input'=>$input,
+                                                    'name'=>$name,
+                                                    'money'=>$money,
+                                                    'time'=>$time
+                                                 )));
+            }else if($type=="system"){
+                //1 用户，2 可投注提示，3 封盘，4 中奖
+                $response_text = mask(json_encode(array(
+                                                    'type'=>$type, 
+                                                    'class'=>'1', 
+                                                    'name'=>$name,
+                                                 )));
+            }
             send_message($response_text);
             break 2; 
         }
