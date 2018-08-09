@@ -7,16 +7,12 @@ $null = NULL;
 $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 socket_set_option($socket, SOL_SOCKET, SO_REUSEADDR, 1);
 socket_bind($socket, 0, $port);
-
 //监听端口
 socket_listen($socket);
-
 //连接的client socket 列表
 $clients = array($socket);
-
 //设置一个死循环,用来监听连接 ,状态
 while (true) {
-    
     $changed = $clients;
     socket_select($changed, $null, $null, 0, 10);
     
@@ -82,7 +78,6 @@ function send_message($msg)
     }
     return true;
 }
-
 
 //解码数据
 function unmask($text) {
