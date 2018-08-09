@@ -197,7 +197,20 @@ class Index extends WebLoginBase{
 		$this->display('index/inc_data_history_left.php');
 	}
     
-	public final function newdh(){
+    //websocket
+	public final function newdh($type=null, $groupId=null, $played=null){
+	    $tmp = array();
+	    foreach ($this->gameinfo as $key=>$val) {
+	        $sql = "select st.id,st.title,st.num,st.enable from ssc_type st where st.id={$val}     ";
+	        $result  = $this->getRow($sql);
+	        !empty($result)?$tmp[$val] = $result:'';
+	    }
+	    $this->finalgameinfo = $tmp;
+	    $this->type = intval($type);
+	    $this->game = 'active';
+	    if(!empty($this->type)&&$this->finalgameinfo[$type]['enable']) {
+		$this->display('newdh/index.php');
+	    }
 		$this->display('newdh/index.php');
 	}
 	
