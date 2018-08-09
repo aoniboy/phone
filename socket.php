@@ -174,17 +174,18 @@ function data(){
     //3
     $response_text = mask(json_encode(array(
                                         'type'  =>'system', 
+                                        'class' =>'4', 
+                                        'number'=>'2309331',
+                                     )));
+    //4
+    $response_text = mask(json_encode(array(
+                                        'type'  =>'system', 
                                         'class' =>'3', 
                                         'number'=>'2309331',
                                         'name'=>'led8888',
                                         'winmoney'=>'200',
                                      )));
-    //4
-    $response_text = mask(json_encode(array(
-                                        'type'  =>'system', 
-                                        'class' =>'4', 
-                                        'number'=>'2309331',
-                                     )));
+
     //5
     $response_text = mask(json_encode(array(
                                         'type'=>'system', 
