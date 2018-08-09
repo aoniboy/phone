@@ -196,4 +196,4 @@ function data(){
                                      )));
     send_message($response_text);
 
-    }
+}
