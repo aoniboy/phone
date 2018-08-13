@@ -209,7 +209,7 @@ class Index extends WebLoginBase{
 	    $this->type = intval($type);
 	    $this->game = 'active';
 	    if(!empty($this->type)&&$this->finalgameinfo[$type]['enable']) {
-		$this->display('newdh/index.php');
+		    $this->display('newdh/index.php');
 	    }
 		$this->display('newdh/index.php');
 	}
