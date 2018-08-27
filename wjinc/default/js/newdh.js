@@ -2,6 +2,9 @@ var newdh = {
     init: function(){
         this.bindEvent();
     },
+    global:{
+        counttimer:null
+    },
     bindEvent: function(){
         $.post('/index.php/game/get28qhinfo/54',function(data){
             var data = data.data;
@@ -83,7 +86,7 @@ var newdh = {
         })
     },
     countdown: function(times,kjtime,kjftime){ //倒计时
-        game.global.counttimer=setInterval(function(){
+        newdh.global.counttimer=setInterval(function(){
             var day=0,
             hour=0,
             minute=0,
