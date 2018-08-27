@@ -407,8 +407,9 @@
                                 '	<div class="f24 tc"><div class="d_text1">剩余不到1分钟了</div></div>'+
                                 '</li>'
                     }else if(cls==0){
+                    	console.log(111233);
                         html+=  '<li class="d_center">'+
-                                '	<div class="d_text2"><span class="col_red">['+msg.number+'期]已封盘</span>，下注结果已系统开奖为标准，如有异议，请及时联系客服</div>'+
+                                '	<div class="d_text2"><span class="col_red">['+gm.global.number+'期]已封盘</span>，下注结果已系统开奖为标准，如有异议，请及时联系客服</div>'+
                                 '</li>'
                     }
                     $(".d_box").append(html);
@@ -525,7 +526,8 @@
 		        this.bindEvent();
 		    },
 		    global:{
-		        counttimer:null
+		        counttimer:null,
+		        number:906704,
 		    },
 		    bindEvent: function(){
 		        $.post('/index.php/game/get28qhinfo/54',function(data){
