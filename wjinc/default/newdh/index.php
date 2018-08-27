@@ -381,31 +381,43 @@
                 i++;
                 console.log(msg)
                 if(type == 'usermsg'){
+                	var cls = msg.class;
                 	var html ='';
-					html+=  '<li class="d_right">'+
-							'	<div class="tc col999 f24">'+msg.time+'</div>'+
-							'	<div class="clearfix d_content">'+
-							'		<div class=" d_float"><img class="tx" src="/wjinc/default/images/tx.png"></div>'+
-							'		<div class=" d_float d_w">'+
-							'			<p class="col999 f24 tr">'+msg.name+'</p>'+
-							'			<div class="bg_red">'+
-							'				<div class="f30 clearfix fff d_title">'+
-							'					<div class="fl">'+
-							'						<span class="iconfont icon-shijian"></span> 第<span>'+msg.number+'期</span>'+			
-							'					</div>'+
-							'					<div class="fr">投注类型：<span>'+msg.title+'</span></div>'+
-							'				</div>'+
-							'				<div class="f40 fff"><span class="iconfont icon-qiandai1 f40"></span> '+msg.money+'元</div>'+
-							'			</div>'+
-							'		</div>'+
-							'	</div>'+
-							'</li>';
-					$(".d_box").append(html);
+                    if(cls==1){
+						html+=  '<li class="d_right">'+
+								'	<div class="tc col999 f24">'+msg.time+'</div>'+
+								'	<div class="clearfix d_content">'+
+								'		<div class=" d_float"><img class="tx" src="/wjinc/default/images/tx.png"></div>'+
+								'		<div class=" d_float d_w">'+
+								'			<p class="col999 f24 tr">'+msg.name+'</p>'+
+								'			<div class="bg_red">'+
+								'				<div class="f30 clearfix fff d_title">'+
+								'					<div class="fl">'+
+								'						<span class="iconfont icon-shijian"></span> 第<span>'+msg.number+'期</span>'+			
+								'					</div>'+
+								'					<div class="fr">投注类型：<span>'+msg.title+'</span></div>'+
+								'				</div>'+
+								'				<div class="f40 fff"><span class="iconfont icon-qiandai1 f40"></span> '+msg.money+'元</div>'+
+								'			</div>'+
+								'		</div>'+
+								'	</div>'+
+								'</li>';
+                    }else if(cls==60){
+                        html+=  '<li class="d_center">'+
+                                '	<div class="f24 tc"><div class="d_text1">剩余不到1分钟了</div></div>'+
+                                '</li>'
+                    }else if(cls==0){
+                        html+=  '<li class="d_center">'+
+                                '	<div class="d_text2"><span class="col_red">['+msg.number+'期]已封盘</span>，下注结果已系统开奖为标准，如有异议，请及时联系客服</div>'+
+                                '</li>'
+                    }
+                    $(".d_box").append(html);
+
                 }
                 if(type == 'system'){
                     var cls = msg.class;
                 	var html ='';
-                    console.log(111);
+                    
                     if(cls==1){
                         html+=  '<li class="d_center">'+
                                 '	<div class="f24 tc"><div class="d_text1">欢迎<span class="col_red">'+msg.name+'</span>进入房间</div></div>'+
@@ -508,6 +520,126 @@
         $(".sure_btn").click(function(){
             send();
         })
+		var gm = {
+		    init: function(){
+		        this.bindEvent();
+		    },
+		    global:{
+		        counttimer:null
+		    },
+		    bindEvent: function(){
+		        $.post('/index.php/game/get28qhinfo/54',function(data){
+		            var data = data.data;
+		            $(".qishu1").text(data.actionNo.actionNo);
+		            gm.countdown(Math.abs(data.actionNo.difftime));
+		        },'json' );
+		        $(".wf_btn").click(function(){
+		            var num = $(this).attr("data-index");
+		            var add = $(this).attr("data-add");
+		            if(add=="jia"){
+		                if(num >=2){
+		                    num =0;
+		                }else{
+		                    num ++;
+		                }
+		            }else if(add=="jian"){
+		                if(num ==0){
+		                    num =2;
+		                }else{
+		                    num--;
+		                }
+		            }
+		            $(this).attr("data-index",num);
+		            $(".wf_n").hide();
+		            $(".wf_n").eq(num).show();
+		            $(".wf_cont> li").hide();
+		            $(".wf_cont>li").eq(num).show();
+		        })
+		        $(".wf_zhi1 li").click(function(){
+		            $(".wf_zhi1 li .wf_z").removeClass("active");
+		            $(this).find(".wf_z").addClass("active");
+		            var title = $(this).find(".c_title").attr("data-title");
+		            var val = $(this).find(".c_val").attr("data-value");
+		            $(".f_title").val(title);
+		            $(".f_val").val(val);
+		        })
+		        $(".cp_input").blur(function(){
+		            console.log($(this).val());
+		            if($(this).val()==0){
+		                $(this).val(1)
+		            }
+		        })
+		        $(".tz_btns").click(function(){
+		            $(".pop_wrap").show();
+		        })
+		        $(".mask").click(function(){
+		            $(".pop_wrap").hide();
+		        })
+		        $(".js_jia").click(function(){
+		            console.log(1)
+		            var val = $(this).attr("data-value");
+		            var num = $(".cp_input").val();
+		            if(val == "jia"){
+		                num ++;
+		                $(".cp_input").val(num)
+		            }else if(val == "jian"){
+		                num --;
+		                $(".cp_input").val(num);
+		                if(num <=0){
+		                    $(".cp_input").val(1);
+		                }
+		            }
+		        })
+		        $(".toplist").on("click",".top_title",function(){
+		            var d = $(this).index();
+		            if(d ==0){
+		                if($(this).hasClass("on")){
+		                    $(".toplist li").hide();
+		                    $(this).removeClass("on")
+		                }else{
+		                     $(".toplist li").show();
+		                     $(this).addClass("on")
+		                }
+		               
+		            }
+		        })
+		        $(".hi_btn").click(function(){
+		            $(".hi_pop").hide();
+		        })
+		    },
+		    checkTime: function(i){ //将0-9的数字前面加上0，例1变为01 
+		        if(i<10) { 
+		            i = "0" + i; 
+		        } 
+		        return i; 
+		    },
+		    countdown: function(times,kjtime,kjftime){ //倒计时
+		        gm.global.counttimer=setInterval(function(){
+		            var day=0,
+		            hour=0,
+		            minute=0,
+		            second=0;//时间默认值
+		            if(times > 0){
+		                day = Math.floor(times / (60 * 60 * 24));
+		                hour = Math.floor(times / (60 * 60)) - (day * 24);
+		                minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
+		                second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+		            }
+		            
+		            $(".gameo_second").text(gm.checkTime(second));
+		            $(".gameo_minute").text(gm.checkTime(minute));
+		            if(times ==60 ){
+		            	var msg ={
+
+		            	}
+		            	websocket.send(JSON.stringify(msg)); 
+		                // $(".kaijiang")[0].play();
+		            }
+		            times--;
+		        },1000);
+		    },
+		}
+		gm.init();
     });    
 </script> 
 </body>
