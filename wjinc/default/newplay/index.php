@@ -17,7 +17,7 @@
                 <div class="top dx tc">
                     <div class="fx top_bor">
                         <p class="col666">距离<sapn class="qishu1"><?=$this->info28['number']?></sapn>期截止</p>
-                        <div class="col_red f34"><?=$this->info28['diff']?></div>
+                        <div class="col_red f34"><span class="gameo_minute"></span>分<span class="gameo_second"></span>秒</div>
                     </div>
                     <div class="fx">
                         <p class="col666">余额</p>
@@ -276,131 +276,139 @@
         </div>		
         <script src="/wjinc/default/js/newdh.js<?= $this->sversion ?>"></script>
         <script>
-            $(function () {
+            $(function(){
                 var wsurl = 'ws://47.74.242.161:9009/socket.php';
                 var websocket;
                 var i = 0;
-                if (window.WebSocket) {
+                if(window.WebSocket){
                     websocket = new WebSocket(wsurl);
 
                     //连接建立
-                    websocket.onopen = function (evevt) {
+                    websocket.onopen = function(evevt){
                         console.log("Connected to WebSocket server.");
-                        //用户进来
-                        var name = $('.f_name').val()+$('.f_uid').val();
-                        var msg = {
-                            type: 'system',
-                            uid:$('.f_uid').val(),
-                            name: name
-                        };
-                        websocket.send(JSON.stringify(msg));
+                //用户进来
+                var name = $('.f_name').val();
+                var msg ={
+                    type:'system',
+                    name:name
+                };
+                websocket.send(JSON.stringify(msg)); 
                         // $('.show-area').append('<p class="bg-info message"><i class="glyphicon glyphicon-info-sign"></i>Connected to WebSocket server!</p>');
                     }
                     //收到消息
-                    websocket.onmessage = function (event) {
+                    websocket.onmessage = function(event) {
                         var msg = JSON.parse(event.data); //解析收到的json消息数据
-                        var type = msg.type;
+                        var type = msg.type; 
                         i++;
                         console.log(msg)
-                        if (type == 'usermsg') {
-                            var html = '';
-                            if(msg.uid == $('.f_uid').val()) {
-                                html += '<li class="d_right">' +
-                                        '	<div class="tc col999 f24">' + msg.time + '</div>' +
-                                        '	<div class="clearfix d_content">' +
-                                        '		<div class=" d_float"><img class="tx" src="/wjinc/default/images/tx.png"></div>' +
-                                        '		<div class=" d_float d_w">' +
-                                        '			<p class="col999 f24 tr">' + msg.name + '</p>' +
-                                        '			<div class="bg_red">' +
-                                        '				<div class="f30 clearfix fff d_title">' +
-                                        '					<div class="fl">' +
-                                        '						<span class="iconfont icon-shijian"></span> 第<span>' + msg.number + '期</span>' +
-                                        '					</div>' +
-                                        '					<div class="fr">投注类型：<span>' + msg.title + '</span></div>' +
-                                        '				</div>' +
-                                        '				<div class="f40 fff"><span class="iconfont icon-qiandai1 f40"></span> ' + msg.money + '元</div>' +
-                                        '			</div>' +
-                                        '		</div>' +
-                                        '	</div>' +
+                        if(type == 'usermsg'){
+                            var cls = msg.class;
+                            var html ='';
+                            if(cls==1){
+                                html+=  '<li class="d_right">'+
+                                        '   <div class="tc col999 f24">'+msg.time+'</div>'+
+                                        '   <div class="clearfix d_content">'+
+                                        '       <div class=" d_float"><img class="tx" src="/wjinc/default/images/tx.png"></div>'+
+                                        '       <div class=" d_float d_w">'+
+                                        '           <p class="col999 f24 tr">'+msg.name+'</p>'+
+                                        '           <div class="bg_red">'+
+                                        '               <div class="f30 clearfix fff d_title">'+
+                                        '                   <div class="fl">'+
+                                        '                       <span class="iconfont icon-shijian"></span> 第<span>'+msg.number+'期</span>'+         
+                                        '                   </div>'+
+                                        '                   <div class="fr">投注类型：<span>'+msg.title+'</span></div>'+
+                                        '               </div>'+
+                                        '               <div class="f40 fff"><span class="iconfont icon-qiandai1 f40"></span> '+msg.money+'元</div>'+
+                                        '           </div>'+
+                                        '       </div>'+
+                                        '   </div>'+
                                         '</li>';
-                            }else {
-                                html += '<li class="d_left">' +
-                                        '	<div class="tc col999 f24">' + msg.time + '</div>' +
-                                        '	<div class="clearfix d_content">' +
-                                        '		<div class=" d_float"><img class="tx" src="/wjinc/default/images/tx.png"></div>' +
-                                        '		<div class=" d_float d_w">' +
-                                        '			<p class="col999 f24">' + msg.name + '</p>' +
-                                        '			<div class="bg_red">' +
-                                        '				<div class="f30 clearfix fff d_title">' +
-                                        '					<div class="fl">' +
-                                        '						<span class="iconfont icon-shijian"></span> 第<span>' + msg.number + '期</span>' +
-                                        '					</div>' +
-                                        '					<div class="fr">投注类型：<span>' + msg.title + '</span></div>' +
-                                        '				</div>' +
-                                        '				<div class="f40 fff"><span class="iconfont icon-qiandai1 f40"></span> ' + msg.money + '元</div>' +
-                                        '			</div>' +
-                                        '		</div>' +
-                                        '	</div>' +
+                            }else if(cls==60){
+                                html+=  '<li class="d_center">'+
+                                        '   <div class="f24 tc"><div class="d_text1">剩余不到1分钟了</div></div>'+
+                                        '</li>'
+                            }else if(cls==0){
+                                console.log(111233);
+                                html+=  '<li class="d_center">'+
+                                        '   <div class="d_text2"><span class="col_red">['+gm.global.number+'期]已封盘</span>，下注结果已系统开奖为标准，如有异议，请及时联系客服</div>'+
+                                        '</li>'
+                            }
+                            $(".d_box").append(html);
+
+                        }
+                        if(type == 'system'){
+                            var cls = msg.class;
+                            var html ='';
+                            
+                            if(cls==1){
+                                html+=  '<li class="d_center">'+
+                                        '   <div class="f24 tc"><div class="d_text1">欢迎<span class="col_red">'+msg.name+'</span>进入房间</div></div>'+
+                                        '</li>'
+                            }else if(cls==2){
+                                html+=  '<li class="d_center">'+
+                                        '   <div class="f30 d_text2"><span class="col_red">['+msg.number+'期]</span>单注<span class="col_red">'+msg.single+'元</span>起，<span class="col_red">'+msg.cap+'元</span>封顶，总注<span class="col_red">'+msg.allnum+'元</span>封顶<br><span class="col_red">★★现状可以开始投注★★</span></div>'+
+                                        '</li>'
+                            }else if(cls==3){
+                                html+=  '<li class="d_center">'+
+                                        '   <div class="d_text2"><span class="col_red">['+msg.number+'期]已封盘</span>，下注结果已系统开奖为标准，如有异议，请及时联系客服</div>'+
+                                        '</li>'
+                            }else if(cls==4){
+                                html+=  '<li class="d_center">'+
+                                        '   <div class="d_text2"><span class="col_red">['+msg.number+'期]</span>恭喜<span class="col_red">'+msg.name+'</span>已中2倍，共获得<span class="col_red">'+msg.winmoney+'元</span></div>'+
+                                        '</li>'
+                            }else if(cls==5){      
+                                html+=  '<li class="d_left">'+
+                                        '   <div class="tc col999 f24">'+msg.time+'</div>'+
+                                        '   <div class="clearfix d_content">'+
+                                        '       <div class=" d_float"><img class="tx" src="/wjinc/default/images/tx.png"></div>'+
+                                        '       <div class=" d_float d_w">'+
+                                        '           <p class="col999 f24">'+msg.name+'</p>'+
+                                        '           <div class="bg_red">'+
+                                        '               <div class="f30 clearfix fff d_title">'+
+                                        '                   <div class="fl">'+
+                                        '                       <span class="iconfont icon-shijian"></span> 第<span>'+msg.number+'期</span>'+         
+                                        '                   </div>'+
+                                        '                   <div class="fr">投注类型：<span>'+msg.title+'</span></div>'+
+                                        '               </div>'+
+                                        '               <div class="f40 fff"><span class="iconfont icon-qiandai1 f40"></span> '+msg.money+'元</div>'+
+                                        '           </div>'+
+                                        '       </div>'+
+                                        '   </div>'+
                                         '</li>';
                             }
                             $(".d_box").append(html);
                         }
-                        if (type == 'system') {
-                            var cls = msg.class;
-                            var html = '';
-                            console.log(111);
-                            if (cls == 1) {
-                                if(msg.uid != $('.f_uid').val()) {
-                                    html += '<li class="d_center">' +
-                                        '	<div class="f24 tc"><div class="d_text1">欢迎<span class="col_red">' + msg.name + '</span>进入房间</div></div>' +
-                                        '</li>'
-                                }
-                            } else if (cls == 2) {
-                                html += '<li class="d_center">' +
-                                        '	<div class="f30 d_text2"><span class="col_red">[' + msg.number + '期]</span>单注<span class="col_red">' + msg.single + '元</span>起，<span class="col_red">' + msg.cap + '元</span>封顶，总注<span class="col_red">' + msg.allnum + '元</span>封顶<br><span class="col_red">★★现状可以开始投注★★</span></div>' +
-                                        '</li>'
-                            } else if (cls == 3) {
-                                html += '<li class="d_center">' +
-                                        '	<div class="d_text2"><span class="col_red">[' + msg.number + '期]已封盘</span>，下注结果已系统开奖为标准，如有异议，请及时联系客服</div>' +
-                                        '</li>'
-                            } else if (cls == 4) {
-                                html += '<li class="d_center">' +
-                                        '	<div class="d_text2"><span class="col_red">[' + msg.number + '期]</span>恭喜<span class="col_red">' + msg.name + '</span>已中2倍，共获得<span class="col_red">' + msg.winmoney + '元</span></div>' +
-                                        '</li>'
-                            } 
-                            $(".d_box").append(html);
-                        }
-                        window.scrollTo(0, document.body.scrollHeight);
-                        $('#message').val('');
-                        //window.location.hash = '#' + i;
+                        window.scrollTo(0,document.body.scrollHeight); 
+                        $('#message').val(''); 
+                        window.location.hash = '#'+i;
                     }
 
                     //发生错误
-                    websocket.onerror = function (event) {
+                    websocket.onerror = function(event){
                         i++;
                         console.log("Connected to WebSocket server error");
-                        $('.show-area').append('<p class="bg-danger message"><a name="' + i + '"></a><i class="glyphicon glyphicon-info-sign"></i>Connect to WebSocket server error.</p>');
-                        //window.location.hash = '#' + i;
+                        $('.show-area').append('<p class="bg-danger message"><a name="'+i+'"></a><i class="glyphicon glyphicon-info-sign"></i>Connect to WebSocket server error.</p>');
+                        window.location.hash = '#'+i;
                     }
 
                     //连接关闭
-                    websocket.onclose = function (event) {
+                    websocket.onclose = function(event){
                         i++;
                         console.log('websocket Connection Closed. ');
-                        $('.show-area').append('<p class="bg-warning message"><a name="' + i + '"></a><i class="glyphicon glyphicon-info-sign"></i>websocket Connection Closed.</p>');
-                        //window.location.hash = '#' + i;
+                        $('.show-area').append('<p class="bg-warning message"><a name="'+i+'"></a><i class="glyphicon glyphicon-info-sign"></i>websocket Connection Closed.</p>');
+                        window.location.hash = '#'+i;
                     }
 
-                    function send() {
+                    function send(){
                         var number = $('.f_number').val();
                         var val = $('.f_val').val();
                         var title = $('.f_title').val();
                         var input = $('.f_input').val();
                         var beishu = $('.f_beishu').val();
                         var dan = $('.f_dan').val();
-                        var name = $('.f_name').val()+$('.f_uid').val();
-                        var money = dan * beishu;
-                        if (!title) {
+                        var name = $('.f_name').val();
+                        var money = dan*beishu;
+                        if(!title){
                             $(".hi_msg").text('请选择投注内容');
                             $(".hi_pop").show();
                             return false;
@@ -413,30 +421,149 @@
                             name: name,
                             money: money,
                             beishu: beishu,
-                            dan: dan,
-                            type: 'usermsg',
-                            uid:$('.f_uid').val()
+                            dan:dan,
+                            type:'usermsg'
                         };
-                        try {
+                        try{  
                             console.log(msg);
-                            websocket.send(JSON.stringify(msg));
+                            websocket.send(JSON.stringify(msg)); 
                             $(".pop_wrap").hide();
-                        } catch (ex) {
+                        } catch(ex) {  
                             console.log(ex);
-                        }
+                        }  
                     }
 
-
-                } else {
+                    
+                }
+                else{
                     alert('该浏览器不支持web socket');
                 }
                 //提交
-                $(".sure_btn").click(function () {
+                $(".sure_btn").click(function(){
                     send();
                 })
-            });
-            
-            
+                var gm = {
+                    init: function(){
+                        this.bindEvent();
+                    },
+                    global:{
+                        counttimer:null,
+                        number:906704,
+                    },
+                    bindEvent: function(){
+                        $.post('/index.php/game/get28qhinfo/54',function(data){
+                            var data = data.data;
+                            $(".qishu1").text(data.actionNo.actionNo);
+                            gm.countdown(Math.abs(data.actionNo.difftime));
+                        },'json' );
+                        $(".wf_btn").click(function(){
+                            var num = $(this).attr("data-index");
+                            var add = $(this).attr("data-add");
+                            if(add=="jia"){
+                                if(num >=2){
+                                    num =0;
+                                }else{
+                                    num ++;
+                                }
+                            }else if(add=="jian"){
+                                if(num ==0){
+                                    num =2;
+                                }else{
+                                    num--;
+                                }
+                            }
+                            $(this).attr("data-index",num);
+                            $(".wf_n").hide();
+                            $(".wf_n").eq(num).show();
+                            $(".wf_cont> li").hide();
+                            $(".wf_cont>li").eq(num).show();
+                        })
+                        $(".wf_zhi1 li").click(function(){
+                            $(".wf_zhi1 li .wf_z").removeClass("active");
+                            $(this).find(".wf_z").addClass("active");
+                            var title = $(this).find(".c_title").attr("data-title");
+                            var val = $(this).find(".c_val").attr("data-value");
+                            $(".f_title").val(title);
+                            $(".f_val").val(val);
+                        })
+                        $(".cp_input").blur(function(){
+                            console.log($(this).val());
+                            if($(this).val()==0){
+                                $(this).val(1)
+                            }
+                        })
+                        $(".tz_btns").click(function(){
+                            $(".pop_wrap").show();
+                        })
+                        $(".mask").click(function(){
+                            $(".pop_wrap").hide();
+                        })
+                        $(".js_jia").click(function(){
+                            console.log(1)
+                            var val = $(this).attr("data-value");
+                            var num = $(".cp_input").val();
+                            if(val == "jia"){
+                                num ++;
+                                $(".cp_input").val(num)
+                            }else if(val == "jian"){
+                                num --;
+                                $(".cp_input").val(num);
+                                if(num <=0){
+                                    $(".cp_input").val(1);
+                                }
+                            }
+                        })
+                        $(".toplist").on("click",".top_title",function(){
+                            var d = $(this).index();
+                            if(d ==0){
+                                if($(this).hasClass("on")){
+                                    $(".toplist li").hide();
+                                    $(this).removeClass("on")
+                                }else{
+                                     $(".toplist li").show();
+                                     $(this).addClass("on")
+                                }
+                               
+                            }
+                        })
+                        $(".hi_btn").click(function(){
+                            $(".hi_pop").hide();
+                        })
+                    },
+                    checkTime: function(i){ //将0-9的数字前面加上0，例1变为01 
+                        if(i<10) { 
+                            i = "0" + i; 
+                        } 
+                        return i; 
+                    },
+                    countdown: function(times,kjtime,kjftime){ //倒计时
+                        gm.global.counttimer=setInterval(function(){
+                            var day=0,
+                            hour=0,
+                            minute=0,
+                            second=0;//时间默认值
+                            if(times > 0){
+                                day = Math.floor(times / (60 * 60 * 24));
+                                hour = Math.floor(times / (60 * 60)) - (day * 24);
+                                minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
+                                second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+                            }
+                            
+                            $(".gameo_second").text(gm.checkTime(second));
+                            $(".gameo_minute").text(gm.checkTime(minute));
+                            if(times ==60 ){
+                                var msg ={
+
+                                }
+                                websocket.send(JSON.stringify(msg)); 
+                                // $(".kaijiang")[0].play();
+                            }
+                            times--;
+                        },1000);
+                    },
+                }
+                gm.init();
+            });    
         </script> 
     </body>
 </html>
