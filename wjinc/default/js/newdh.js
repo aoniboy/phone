@@ -6,7 +6,7 @@ var newdh = {
         $.post('/index.php/game/get28qhinfo/54',function(data){
             var data = data.data;
             $(".qishu1").text(data.actionNo.actionNo);
-            newdh.countdown(data.actionNo.difftime);
+            newdh.countdown(abs(data.actionNo.difftime));
         },'json' );
         $(".wf_btn").click(function(){
             var num = $(this).attr("data-index");
