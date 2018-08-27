@@ -355,4 +355,29 @@ class Game extends WebLoginBase{
 			throw $e;
 		}
 	}
+        
+        public final function get28Qhinfo($type) {
+	    $type = intval($type);
+
+            $typename = $this->getValue("select title from ssc_type where id=?", $type);
+            $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data sd,ssc_type st where sd.type = {$type} and st.id={$type}  order by sd.id desc  limit 0,1";
+            $result = $this->getRows($sql);
+            $no = '2324220';
+            $diff = '0';
+            $time= '';
+            foreach ($result as $key => $val) {
+                if($key === 0) {
+                    $no = $val['number'];
+                    $diff =    time() - $val['time'] -300;
+                    $time = date("Y-m-d H:i:s",$val['time'] +300);
+                }
+            }
+            $data['name'] = $typename;
+	    $data['actionNo']["actionNo"] = $no+1;
+            $data['actionNo']["actionTime"] = $time;
+            $data['actionNo']["difftime"] = $diff;
+            $data['actionNo']["diffKTime"] = $diff;
+            $data['actionNo']["diffFTime"] = 300;
+	    $this->outputData(0,$data);
+	}
 }
