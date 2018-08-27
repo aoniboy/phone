@@ -85,6 +85,12 @@ var newdh = {
             $(".hi_pop").hide();
         })
     },
+    checkTime: function(i){ //将0-9的数字前面加上0，例1变为01 
+        if(i<10) { 
+            i = "0" + i; 
+        } 
+        return i; 
+    },
     countdown: function(times,kjtime,kjftime){ //倒计时
         newdh.global.counttimer=setInterval(function(){
             var day=0,
@@ -98,8 +104,8 @@ var newdh = {
                 second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
             }
             
-            $(".gameo_second").text(game.checkTime(second));
-            $(".gameo_minute").text(game.checkTime(minute));
+            $(".gameo_second").text(newdh.checkTime(second));
+            $(".gameo_minute").text(newdh.checkTime(minute));
             if(times ==5 ){
                 // $(".kaijiang")[0].play();
             }
