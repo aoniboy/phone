@@ -15,8 +15,8 @@
 	<div class="topfix">
 		<div class="top dx tc">
 			<div class="fx top_bor">
-				<p class="col666">距离<sapn class="qishu1">2309332</sapn>期截止</p>
-				<div class="col_red f34">5分10秒</div>
+				<p class="col666">距离<sapn class="qishu1"></sapn>期截止</p>
+				<div class="col_red f34"><span class="gameo_second"></span>分<span class="gameo_minute"></span>秒</div>
 			</div>
 			<div class="fx">
 				<p class="col666">余额</p>

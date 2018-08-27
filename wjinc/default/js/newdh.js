@@ -3,6 +3,11 @@ var newdh = {
         this.bindEvent();
     },
     bindEvent: function(){
+        $.post('/index.php/game/get28qhinfo/54',function(data){
+            var data = data.data;
+            $(".qishu1").text(data.actionNo.actionNo);
+            newdh.countdown(data.actionNo.difftime);
+        },'json' );
         $(".wf_btn").click(function(){
             var num = $(this).attr("data-index");
             var add = $(this).attr("data-add");
@@ -76,6 +81,27 @@ var newdh = {
         $(".hi_btn").click(function(){
             $(".hi_pop").hide();
         })
+    },
+    countdown: function(times,kjtime,kjftime){ //倒计时
+        game.global.counttimer=setInterval(function(){
+            var day=0,
+            hour=0,
+            minute=0,
+            second=0;//时间默认值
+            if(times > 0){
+                day = Math.floor(times / (60 * 60 * 24));
+                hour = Math.floor(times / (60 * 60)) - (day * 24);
+                minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
+                second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+            }
+            
+            $(".gameo_second").text(game.checkTime(second));
+            $(".gameo_minute").text(game.checkTime(minute));
+            if(times ==5 ){
+                // $(".kaijiang")[0].play();
+            }
+            times--;
+        },1000);
     },
 }
 
