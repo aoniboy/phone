@@ -1,0 +1,319 @@
+php: /usr/local/mysql/lib/libmysqlclient.so.18: no version information available (required by php)
+PHP Notice:  Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+
+Notice: Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+PHP Notice:  Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+
+Notice: Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+PHP Notice:  Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+
+Notice: Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+PHP Notice:  Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+
+Notice: Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+PHP Notice:  Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+
+Notice: Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+PHP Notice:  Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+
+Notice: Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+PHP Notice:  Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+
+Notice: Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+PHP Notice:  Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+
+Notice: Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+PHP Notice:  Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+
+Notice: Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+PHP Notice:  Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+
+Notice: Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 46
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 46
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 47
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 47
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 48
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 48
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 49
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 49
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 50
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 50
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 51
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 51
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 53
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 53
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 54
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 54
+PHP Notice:  Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+
+Notice: Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+PHP Notice:  Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+
+Notice: Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+PHP Notice:  Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+
+Notice: Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+PHP Notice:  Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+
+Notice: Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+PHP Notice:  Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+
+Notice: Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 46
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 46
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 47
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 47
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 48
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 48
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 49
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 49
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 50
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 50
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 51
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 51
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 53
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 53
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 54
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 54
+PHP Notice:  Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+
+Notice: Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+PHP Notice:  Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+
+Notice: Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+PHP Notice:  Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+
+Notice: Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+PHP Notice:  Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+
+Notice: Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+PHP Notice:  Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+
+Notice: Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 46
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 46
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 47
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 47
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 48
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 48
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 49
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 49
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 50
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 50
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 51
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 51
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 53
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 53
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 54
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 54
+PHP Notice:  Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+
+Notice: Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+PHP Notice:  Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+
+Notice: Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+PHP Notice:  Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+
+Notice: Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+PHP Notice:  Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+
+Notice: Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+PHP Notice:  Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+
+Notice: Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+PHP Notice:  Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+
+Notice: Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+PHP Notice:  Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+
+Notice: Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+PHP Notice:  Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+
+Notice: Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+PHP Notice:  Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+
+Notice: Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+PHP Notice:  Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+
+Notice: Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 46
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 46
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 47
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 47
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 48
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 48
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 49
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 49
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 50
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 50
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 51
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 51
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 53
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 53
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 54
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 54
+PHP Notice:  Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+
+Notice: Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+PHP Notice:  Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+
+Notice: Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+PHP Notice:  Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+
+Notice: Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+PHP Notice:  Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+
+Notice: Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+PHP Notice:  Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+
+Notice: Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 46
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 46
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 47
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 47
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 48
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 48
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 49
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 49
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 50
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 50
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 51
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 51
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 53
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 53
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 54
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 54
+PHP Notice:  Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+
+Notice: Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+PHP Notice:  Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+
+Notice: Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+PHP Notice:  Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+
+Notice: Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+PHP Notice:  Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+
+Notice: Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+PHP Notice:  Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+
+Notice: Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 46
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 46
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 47
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 47
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 48
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 48
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 49
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 49
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 50
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 50
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 51
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 51
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 53
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 53
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 54
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 54
+PHP Notice:  Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+
+Notice: Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+PHP Notice:  Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+
+Notice: Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+PHP Notice:  Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+
+Notice: Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+PHP Notice:  Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+
+Notice: Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+PHP Notice:  Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+
+Notice: Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 46
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 46
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 47
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 47
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 48
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 48
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 49
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 49
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 50
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 50
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 51
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 51
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 53
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 53
+PHP Notice:  Trying to get property of non-object in /data/www/phone/socket.php on line 54
+
+Notice: Trying to get property of non-object in /data/www/phone/socket.php on line 54
+PHP Notice:  Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+
+Notice: Undefined property: stdClass::$title in /data/www/phone/socket.php on line 46
+PHP Notice:  Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+
+Notice: Undefined property: stdClass::$val in /data/www/phone/socket.php on line 47
+PHP Notice:  Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+
+Notice: Undefined property: stdClass::$number in /data/www/phone/socket.php on line 48
+PHP Notice:  Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+
+Notice: Undefined property: stdClass::$input in /data/www/phone/socket.php on line 49
+PHP Notice:  Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51
+
+Notice: Undefined property: stdClass::$money in /data/www/phone/socket.php on line 51

@@ -49,13 +49,13 @@
                 </a>
             </li>
             <li>
-                <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/1/2" data-open="true">
+                <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/bj28" data-open="true">
                     <img class="fl" src="/wjinc/default/images/index_logo54.jpg">
                     <p class="fl">北京幸运28</p>
                 </a>
             </li>
             <li>
-                <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/1/2" data-open="true">
+                <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/jnd28" data-open="true">
                     <img class="fl" src="/wjinc/default/images/index_logo55.jpg">
                     <p class="fl">加拿大幸运28</p>
                 </a>
@@ -78,7 +78,7 @@
         		<?php
                     $this->getSystemSettings();
                     $this->getTypes();
-                    $types=array(1,3,5,6,9,10,12,14,15,16,20,7);
+                    $types=array(1,3,5,6,9,10,12,14,15,16,20,7,54,55);
                     $name=explode('|',$this->settings['paihangsjnr']);
                     $name2=explode('|',$this->settings['paihangsjje']);
                     $gg=$this->getRows("select * from {$this->prename}bets where zjCount=1  and bonus>8000 and bonus<180000 order by id desc limit 10",$this->settings['sbje']);

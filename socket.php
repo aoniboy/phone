@@ -51,6 +51,7 @@ while (true) {
             $money = $tst_msg->money;
             $time = date('Y-m-d H:i:s',time());
             $type = $tst_msg->type;
+            $uid = $tst_msg->uid;
             //把消息发送回所有连接的 client 上去;
             if($type=="usermsg"){
                 $response_text = mask(json_encode(array(
@@ -59,7 +60,8 @@ while (true) {
                                                     'number'=>$number,
                                                     'name'=>$name,
                                                     'money'=>$money,
-                                                    'time'=>$time
+                                                    'time'=>$time,
+                                                    'uid'=>$uid
                                                  )));
             }else if($type=="system"){
                 //1 用户，2 可投注提示，3 封盘，4 中奖
@@ -67,6 +69,7 @@ while (true) {
                                                     'type'=>$type, 
                                                     'class'=>'1', 
                                                     'name'=>$name,
+                                                    'uid'=>$uid
                                                  )));
             }
             send_message($response_text);
@@ -158,43 +161,4 @@ function perform_handshaking($receved_header,$client_conn, $host, $port)
     "Sec-WebSocket-Accept:$secAccept\r\n\r\n";
     socket_write($client_conn,$upgrade,strlen($upgrade));
 }
-//数据格式
-function data(){
-    //1 用户进来，2 可投注提示，3 封盘，4 中奖，5 别的用户投注
 
-    //2
-    $response_text = mask(json_encode(array(
-                                        'type'  =>'system', 
-                                        'class' =>'2', 
-                                        'number'=>'2309331',
-                                        'single'=>'1',
-                                        'cap'   =>'20000',
-                                        'allnum'=>'30000000'
-                                     )));
-    //3
-    $response_text = mask(json_encode(array(
-                                        'type'  =>'system', 
-                                        'class' =>'4', 
-                                        'number'=>'2309331',
-                                     )));
-    //4
-    $response_text = mask(json_encode(array(
-                                        'type'  =>'system', 
-                                        'class' =>'3', 
-                                        'number'=>'2309331',
-                                        'name'=>'led8888',
-                                        'winmoney'=>'200',
-                                     )));
-
-    //5
-    $response_text = mask(json_encode(array(
-                                        'type'=>'system', 
-                                        'title'=>'大', 
-                                        'number'=>'2309331',
-                                        'name'=>'led888',
-                                        'money'=>'200',
-                                        'time'=>$time //当前时间
-                                     )));
-    send_message($response_text);
-
-}
