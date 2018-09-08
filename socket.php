@@ -56,6 +56,7 @@ while (true) {
             if($type=="usermsg"){
                 $response_text = mask(json_encode(array(
                                                     'type'=>$type, 
+                                                    'class'=>60, 
                                                     'title'=>$title, 
                                                     'number'=>$number,
                                                     'name'=>$name,
