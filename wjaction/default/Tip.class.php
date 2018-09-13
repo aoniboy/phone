@@ -112,7 +112,15 @@ class Tip extends WebLoginBase{
     		         'flag'=>false,
     		         
     		     );
-    		    $this->outputData(0,$info);
+                    $whereStr=" where type={$this->type} and uid={$this->user['uid']} and actionNo='{$ctionNo}' and isDelete=0 ";
+                    if(!$this->getCol("select id from {$this->prename}bets ".$whereStr)){
+                       $info =  array(
+    		         'flag'=>true,
+                         'message'=>''
+    		         
+    		     );
+                    }
+                    $this->outputData(0,$info);
     		 }
     	}
     	$info =  array(

@@ -313,7 +313,15 @@ class WebBase extends Object{
 	}
 	public function Kuai8(&$actionNo, &$actionTime, $time=null){
 		$this->setTimeNo($actionTime, $time);
-		$actionNo = 179*(strtotime(date('Y-m-d', $time))-strtotime('2004-09-19'))/3600/24+$actionNo-77;
+		$actionNo = 179*(strtotime(date('Y-m-d', $time))-strtotime('2004-10-11'))/3600/24+$actionNo-622;
+	}
+        public function bj28(&$actionNo, &$actionTime, $time=null){
+		$this->setTimeNo($actionTime, $time);
+		$actionNo = 179*(strtotime(date('Y-m-d', $time))-strtotime('2004-10-11'))/3600/24+$actionNo-622;
+	}
+        public function jnd28(&$actionNo, &$actionTime, $time=null){
+		$this->setTimeNo($actionTime, $time);
+		$actionNo = 394*(strtotime(date('Y-m-d', $time))-strtotime('2004-10-11'))/3600/24+$actionNo-622;
 	}
 	/**
 	 * ��ȡ��ǰ���õ�����

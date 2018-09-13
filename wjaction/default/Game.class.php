@@ -168,10 +168,23 @@ class Game extends WebLoginBase{
 	    if($kjHao) $kjHao=explode(',', $kjHao);
 	    $tnumber = '';		 	    
 	    foreach($kjHao as $k=>$v) {
-    	        $tnumber .= "<span>$v</span>";
-    	}
 	        
-	    $data['kjNo'] = $tnumber;
+                if(in_array($type, array(54,55))) {
+                    $operate = "`+`";
+                    if ($k == 2) {
+                        $operate = "=";
+                    }
+                    
+                    $tnumber .= str_replace("`+`", "+",  $v .  $operate );
+                }else {
+                    $tnumber .= "<span>$v</span>";
+                }
+	    }
+	    if(in_array($type, array(54,55))) { 
+                $data['kjNo'] = $tnumber.array_sum($kjHao);
+            }else {
+                $data['kjNo'] = $tnumber;
+            }
 	    $this->outputData(0,$data);
 	}
 	
@@ -194,10 +207,23 @@ class Game extends WebLoginBase{
 	    $data['lastNo'] = $lastNo;
 	    $tnumber = '';
 	    foreach($kjHao as $k=>$v) {
-	        $tnumber .= "<span>$v</span>";
+	        
+                if(in_array($type, array(54,55))) {
+                    $operate = "`+`";
+                    if ($k == 2) {
+                        $operate = "=";
+                    }
+                    
+                    $tnumber .= str_replace("`+`", "+",  $v .  $operate );
+                }else {
+                    $tnumber .= "<span>$v</span>";
+                }
 	    }
-	     
-	    $data['kjNo'] = $tnumber;
+	    if(in_array($type, array(54,55))) { 
+                $data['kjNo'] = $tnumber.array_sum($kjHao);
+            }else {
+                $data['kjNo'] = $tnumber;
+            }
 	    $data['num'] = $types[$this->type]['num'];
 	     
 	    $this->outputData(0,$data);
@@ -356,28 +382,49 @@ class Game extends WebLoginBase{
 		}
 	}
         
-        public final function get28Qhinfo($type) {
+        public final function getKjListInfo($type) {
 	    $type = intval($type);
-
-            $typename = $this->getValue("select title from ssc_type where id=?", $type);
-            $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data sd,ssc_type st where sd.type = {$type} and st.id={$type}  order by sd.id desc  limit 0,1";
+            $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data sd,ssc_type st where sd.type = {$type} and st.id={$type}  order by sd.id desc  limit 0,5 ";
             $result = $this->getRows($sql);
-            $no = '2324220';
-            $diff = '0';
-            $time= '';
             foreach ($result as $key => $val) {
-                if($key === 0) {
-                    $no = $val['number'];
-                    $diff =    time() - $val['time'] -300;
-                    $time = date("Y-m-d H:i:s",$val['time'] +300);
+                $result[$key]['time'] = date("Y-m-d H:i", $val['time']);
+                $data = explode(",", $val['data']);
+                $tnumber = [];
+                foreach ($data as $k => $v) {
+                    $operate = "`+`";
+                    if ($k == 2) {
+                        $operate = "=";
+                    }
+                    $tnumber[] = str_replace("`+`", "+", '<span class="qi_num">' . $v . '</span><span class="col_red">' . $operate . '</span>');
                 }
+                $sum = array_sum($data);
+                $sumstr = self::calcBigNumber($sum) . "、" . self::calcDanNumber($sum);
+                $tnumber[] = '<span class="qi_num qi_lv">' . $sum . '</span>（' . $sumstr . '）';
+                $result[$key]['tnumber'] = implode("", $tnumber);
             }
-            $data['name'] = $typename;
-	    $data['actionNo']["actionNo"] = $no+1;
-            $data['actionNo']["actionTime"] = $time;
-            $data['actionNo']["difftime"] = $diff;
-            $data['actionNo']["diffKTime"] = $diff;
-            $data['actionNo']["diffFTime"] = 300;
+            $this->result = $result;
+            $data = $this->fetch('newplay/toplist.php');
 	    $this->outputData(0,$data);
 	}
+        
+        
+    public static function calcBigNumber($number) {
+        $result = "";
+        if ($number >= 14 && $number <= 27) {
+            $result = "大";
+        } else {
+            $result = "小";
+        }
+        return $result;
+    }
+
+    public static function calcDanNumber($number) {
+        $result = "";
+        if ($number % 2 == 0) {
+            $result = "双";
+        } else {
+            $result = "单";
+        }
+        return $result;
+    }
 }

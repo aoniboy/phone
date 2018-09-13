@@ -27,7 +27,7 @@ class Index extends WebLoginBase {
     //平台首页
     public final function main() {
         $sql = "select * from {$this->prename}content where enable=1 and nodeId=1 ";
-        $sql .= ' order by id desc limit 1';
+        $sql .= ' order by id desc limit 3';
         $this->noticeinfo = $this->getRows($sql);
         $this->index = 'active';
         $this->display('newindex.php');
@@ -211,95 +211,45 @@ class Index extends WebLoginBase {
         //
         $this->display('newdh/index.php');
     }
-    
+
     //websocket
     public final function jnd28() {
         $type = 55;
-        $typename = $this->getValue("select title from ssc_type where id=?", $type);
-        $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data sd,ssc_type st where sd.type = {$type} and st.id={$type}  order by sd.id desc  limit 0,5 ";
-        $result = $this->getRows($sql);
-        $no = '2324220';
-        $diff = '0';
-        foreach ($result as $key => $val) {
-            if($key === 0) {
-                $no = $val['number'];
-                $diff =    time() - $val['time'] -300;
-            }
-            $result[$key]['time'] = date("Y-m-d H:i", $val['time']);
-            $data = explode(",", $val['data']);
-            $tnumber = [];
-            foreach ($data as $k => $v) {
-                $operate = "`+`";
-                if($k==2) {
-                    $operate = "=";
-                }
-                $tnumber[] = str_replace("`+`","+",'<span class="qi_num">'.$v.'</span><span class="col_red">'.$operate.'</span>');
-            }
-            $sum = array_sum($data);
-            $sumstr = self::calcBigNumber($sum)."、".self::calcDanNumber($sum);
-            $tnumber[] = '<span class="qi_num qi_lv">'.$sum.'</span>（'.$sumstr.'）';
-            $result[$key]['tnumber'] = implode("", $tnumber);
-        }
-        $info28['number'] = $no+1;
-        $info28['diff']   = abs($diff);
-        $info28['flag']   = abs($diff)>300;
-        $this->result = $result;
+        
+        $no = '';
+        
+        $info28['number'] = $no;
+        
         $this->info28 = $info28;
+        $this->ftype = $type;
+        $this->pageTitle = "加拿大28";
         $this->display('newplay/index.php');
     }
+
     //websocket
     public final function bj28() {
         $type = 54;
-        $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data sd,ssc_type st where sd.type = {$type} and st.id={$type}  order by sd.id desc  limit 0,5 ";
-        $result = $this->getRows($sql);
-        $no = '906661';
-        $diff = '0';
-        foreach ($result as $key => $val) {
-            if($key === 0) {
-                $no = $val['number'];
-                $diff =    time() - $val['time'] -300;
+        $sql = "select defaultodds from {$this->prename}member_odds where gameid =8 and uid = {$this->user['uid']} order by id desc";
+        $userProp = $this->getRow($sql);
+        $sql = "select id from {$this->prename}played_group where type =8 and enable = 1 order by sort";
+        $data = $this->getRows($sql);
+        $result = array();
+        foreach ($data as $key => $val) {
+            $sql = "select id,name,selectNum,groupId,numinfo,simpleInfo,bonusProp, bonusPropBase,bonusPropProportion,betCountFun from {$this->prename}played where  groupId= ? and enable = 1 ";
+            $tmp = $this->getRows($sql, $val['id']);
+            foreach ($tmp as $k=>$v) {
+                $v['money'] = sprintf("%.2f",$userProp['defaultodds']*$v['bonusPropProportion']);
+                $result[$val['id']][] = $v;
             }
-            $result[$key]['time'] = date("Y-m-d H:i", $val['time']);
-            $data = explode(",", $val['data']);
-            $tnumber = [];
-            foreach ($data as $k => $v) {
-                $operate = "`+`";
-                if($k==2) {
-                    $operate = "=";
-                }
-                $tnumber[] = str_replace("`+`","+",'<span class="qi_num">'.$v.'</span><span class="col_red">'.$operate.'</span>');
-            }
-            $sum = array_sum($data);
-            $sumstr = self::calcBigNumber($sum)."、".self::calcDanNumber($sum);
-            $tnumber[] = '<span class="qi_num qi_lv">'.$sum.'</span>（'.$sumstr.'）';
-            $result[$key]['tnumber'] = implode("", $tnumber);
         }
-        $info28['number'] = $no+1;
-        $info28['diff']   = abs($diff);
-        $info28['flag']   = abs($diff)>300;
-        $this->result = $result;
+        $no = '';
+        $info28['number'] = $no ;
         $this->info28 = $info28;
+        $this->ftype = $type;
+        $this->pageTitle = "北京28";
+        $this->result = $result;
         $this->display('newplay/index.php');
     }
-    
-    public static function calcBigNumber($number) {
-        $result = "";
-        if($number>=14&&$number<=27) {
-            $result = "大";
-        }else {
-            $result = "小";
-        }
-        return $result;
-    }
-    
-    public static function calcDanNumber($number) {
-        $result = "";
-        if($number%2 ==0) {
-            $result = "双";
-        }else {
-            $result = "单";
-        }
-        return $result;
-    }
+
 
 }
