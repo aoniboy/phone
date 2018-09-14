@@ -127,7 +127,7 @@
                         <li class="wf_cont3 hide">
                             <div class="col999 tc f24 ">中奖和值：<span class="zj_tips">3 6 9 12 15 18 21 24</span></div>
                             <div class="wf_zhi">
-                                <ul class="wf_zhi1 wf_zhi2 clearfix">
+                                <ul class="wf_zhi1 wf_zhi2 clearfix" style="height: 2.08rem;">
                                     <?php
                                          if ($this->result)    
                                              foreach ($this->result[103] as $key => $var) {
