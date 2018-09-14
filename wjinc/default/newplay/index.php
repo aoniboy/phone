@@ -393,7 +393,7 @@
                             $(that).find(".wf_zhi1 li .wf_z").eq(0).addClass("active");
                             var title = $(that).find(".c_title").attr("data-title");
                             var val = $(that).find(".c_val").attr("data-value");
-                            val = val.toFixed(1); 
+                            val = Number(val).toFixed(2); 
                             var tips =  $(that).find(".c_val").attr("data-info");
                             var sindex =  $(that).find(".c_val").attr("data-index");
                             $(".f_title").val(title);
@@ -405,7 +405,7 @@
                             $(this).find(".wf_z").addClass("active");
                             var title = $(this).find(".c_title").attr("data-title");
                             var val = $(this).find(".c_val").attr("data-value");
-                            val = val.toFixed(1); 
+                            val = Number(val).toFixed(2); 
                             var tips =  $(this).find(".c_val").attr("data-info");
                             var sindex =  $(this).find(".c_val").attr("data-index");
                             $(".f_title").val(title);
@@ -426,7 +426,7 @@
                             $(that).find(".wf_zhi1 li .wf_z").eq(0).addClass("active");
                             var title = $(that).find(".c_title").attr("data-title");
                             var val = $(that).find(".c_val").attr("data-value");
-                            val = Number(val).toFixed(1); 
+                            val = Number(val).toFixed(2); 
                             var tips =  $(that).find(".c_val").attr("data-info");
                             var sindex =  $(that).find(".c_val").attr("data-index");
                             $(".f_title").val(title);
