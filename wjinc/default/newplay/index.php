@@ -394,7 +394,6 @@
                             var val = $(that).find(".c_val").attr("data-value");
                             var tips =  $(that).find(".c_val").attr("data-info");
                             var sindex =  $(that).find(".c_val").attr("data-index");
-                            console.log(sindex,2222222);
                             $(".f_title").val(title);
                             $(".f_val").val(val);
                             $("."+sindex+" .zj_tips").text(tips);
@@ -418,6 +417,17 @@
                         })
                         $(".tz_btns").click(function () {
                             $(".pop_wrap").show();
+
+                            var that = $(".wf_cont > li").eq(0);
+                            $(".wf_zhi1 li .wf_z").removeClass("active");
+                            $(that).find(".wf_zhi1 li .wf_z").eq(0).addClass("active");
+                            var title = $(that).find(".c_title").attr("data-title");
+                            var val = $(that).find(".c_val").attr("data-value");
+                            var tips =  $(that).find(".c_val").attr("data-info");
+                            var sindex =  $(that).find(".c_val").attr("data-index");
+                            $(".f_title").val(title);
+                            $(".f_val").val(val);
+                            $("."+sindex+" .zj_tips").text(tips);
                         })
                         $(".mask").click(function () {
                             $(".pop_wrap").hide();
