@@ -97,7 +97,7 @@
                                     <li class="tc fl">
                                         <div class="wf_z <?= $key==0?"active":""?>">
                                             <div class="c_title" data-title="<?= $var['name'] ?>"><?= $var['name'] ?></div>
-                                            <div class="col_red c_val" data-index="wf_cont1" data-id="<?= $var['id'] ?>" data-info="<?= $var['numinfo'] ?>" data-value="<?= $var['name'] ?>"><?= $var['money'] ?></div>
+                                            <div class="col_red c_val" data-index="wf_cont1" data-id="<?= $var['id'] ?>" data-info="<?= $var['numinfo'] ?>" data-value="<?= $var['money'] ?>"><?= $var['money'] ?></div>
                                         </div>
                                     </li>
                                      <?php } ?>
@@ -117,7 +117,7 @@
                                     <li class="tc fl">
                                         <div class="wf_z <?= $key==0?"active":""?>">
                                             <div class="c_title" data-title="<?= $var['name'] ?>"><?= $var['name'] ?></div>
-                                            <div class="col_red c_val" data-index="wf_cont2" data-id="<?= $var['id'] ?>" data-info="<?= $var['numinfo'] ?>" data-value="<?= $var['name'] ?>"><?= $var['money'] ?></div>
+                                            <div class="col_red c_val" data-index="wf_cont2" data-id="<?= $var['id'] ?>" data-info="<?= $var['numinfo'] ?>" data-value="<?= $var['money'] ?>"><?= $var['money'] ?></div>
                                         </div>
                                     </li>
                                      <?php } ?>
@@ -135,7 +135,7 @@
                                     <li class="tc fl">
                                         <div class="wf_z <?= $key==0?"active":""?>">
                                             <div class="c_title" data-title="<?= $var['name'] ?>"><?= $var['name'] ?></div>
-                                            <div class="col_red c_val" data-index="wf_cont3" data-id="<?= $var['id'] ?>" data-info="<?= $var['numinfo'] ?>" data-value="<?= $var['name'] ?>"><?= $var['money'] ?></div>
+                                            <div class="col_red c_val" data-index="wf_cont3" data-id="<?= $var['id'] ?>" data-info="<?= $var['numinfo'] ?>" data-value="<?= $var['money'] ?>"><?= $var['money'] ?></div>
                                         </div>
                                     </li>
                                      <?php } ?>
