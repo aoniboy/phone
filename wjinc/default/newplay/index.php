@@ -82,8 +82,9 @@
                         <span class=" wf_n f30">大小单双</span>
                         <span class=" wf_n f30 hide">猜数字</span>
                         <span class=" wf_n f30 hide">特殊玩法</span>
-                        <span class="iconfont icon-sanjiaoleft wf_btn1  wf_btn col_red" data-index="0" data-add="jian"></span>
-                        <span class="iconfont icon-sanjiaoright wf_btn2 wf_btn col_red" data-index="0" data-add="jia"></span>
+                        <span class="iconfont icon-sanjiaoleft wf_btn1  wf_btn col_red" data-add="jian"></span>
+                        <span class="iconfont icon-sanjiaoright wf_btn2 wf_btn col_red" data-add="jia"></span>
+                        <input type="hidden" class="data_index" value="0">
                     </div>
                     <ul class="wf_cont">
                         <li class="wf_cont1">
@@ -366,7 +367,7 @@
                     bindEvent: function () {
 
                         $(".wf_btn").click(function () {
-                            var num = $(this).attr("data-index");
+                            var num = $(".data_index").val();
                             var add = $(this).attr("data-add");
                             if (add == "jia") {
                                 if (num >= 2) {
@@ -381,8 +382,8 @@
                                     num--;
                                 }
                             }
-                            console.log(num);
-                            $(this).attr("data-index", num);
+                            
+                            $(".data_index").val(num);
                             $(".wf_n").hide();
                             $(".wf_n").eq(num).show();
                             $(".wf_cont> li").hide();
