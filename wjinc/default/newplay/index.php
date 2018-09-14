@@ -392,7 +392,8 @@
                             $(".wf_zhi1 li .wf_z").removeClass("active");
                             $(that).find(".wf_zhi1 li .wf_z").eq(0).addClass("active");
                             var title = $(that).find(".c_title").attr("data-title");
-                            var val = $(that).find(".c_val").attr("data-value").toFixed(1);
+                            var val = $(that).find(".c_val").attr("data-value");
+                            val = val.toFixed(1); 
                             var tips =  $(that).find(".c_val").attr("data-info");
                             var sindex =  $(that).find(".c_val").attr("data-index");
                             $(".f_title").val(title);
@@ -403,7 +404,8 @@
                             $(".wf_zhi1 li .wf_z").removeClass("active");
                             $(this).find(".wf_z").addClass("active");
                             var title = $(this).find(".c_title").attr("data-title");
-                            var val = $(this).find(".c_val").attr("data-value").toFixed(1);
+                            var val = $(this).find(".c_val").attr("data-value");
+                            val = val.toFixed(1); 
                             var tips =  $(this).find(".c_val").attr("data-info");
                             var sindex =  $(this).find(".c_val").attr("data-index");
                             $(".f_title").val(title);
@@ -423,7 +425,8 @@
                             $(".wf_zhi1 li .wf_z").removeClass("active");
                             $(that).find(".wf_zhi1 li .wf_z").eq(0).addClass("active");
                             var title = $(that).find(".c_title").attr("data-title");
-                            var val = $(that).find(".c_val").attr("data-value").toFixed(1);
+                            var val = $(that).find(".c_val").attr("data-value");
+                            val = val.toFixed(1); 
                             var tips =  $(that).find(".c_val").attr("data-info");
                             var sindex =  $(that).find(".c_val").attr("data-index");
                             $(".f_title").val(title);
