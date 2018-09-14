@@ -380,6 +380,7 @@
                                     num--;
                                 }
                             }
+                            console.log(num,3333334);
                             $(this).attr("data-index", num);
                             $(".wf_n").hide();
                             $(".wf_n").eq(num).show();
