@@ -426,6 +426,7 @@
                             $(that).find(".wf_zhi1 li .wf_z").eq(0).addClass("active");
                             var title = $(that).find(".c_title").attr("data-title");
                             var val = $(that).find(".c_val").attr("data-value");
+                            var val = 23.344;
                             val = val.toFixed(1); 
                             var tips =  $(that).find(".c_val").attr("data-info");
                             var sindex =  $(that).find(".c_val").attr("data-index");
