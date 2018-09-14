@@ -420,14 +420,13 @@
                         $(".tz_btns").click(function () {
                             $(".pop_wrap").show();
                             $(".wf_cont .wf_cont1").show();
-                            $(".wf_cont .wf_cont2,.wf_cont .wf_cont3").show();
+                            $(".wf_cont .wf_cont2,.wf_cont .wf_cont3").hide();
                             var that = $(".wf_cont > li").eq(0);
                             $(".wf_zhi1 li .wf_z").removeClass("active");
                             $(that).find(".wf_zhi1 li .wf_z").eq(0).addClass("active");
                             var title = $(that).find(".c_title").attr("data-title");
                             var val = $(that).find(".c_val").attr("data-value");
-                            var val = 23.344;
-                            val = val.toFixed(1); 
+                            val = Number(val).toFixed(1); 
                             var tips =  $(that).find(".c_val").attr("data-info");
                             var sindex =  $(that).find(".c_val").attr("data-index");
                             $(".f_title").val(title);
