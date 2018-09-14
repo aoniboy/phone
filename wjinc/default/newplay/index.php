@@ -417,7 +417,7 @@
                         })
                         $(".tz_btns").click(function () {
                             $(".pop_wrap").show();
-                            $(".wf_cont >li").eq(0).show().slibings("li").hide();
+                            $(".wf_cont >li").eq(0).show().siblings("li").hide();
                             var that = $(".wf_cont > li").eq(0);
                             $(".wf_zhi1 li .wf_z").removeClass("active");
                             $(that).find(".wf_zhi1 li .wf_z").eq(0).addClass("active");
