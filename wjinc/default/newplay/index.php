@@ -382,7 +382,7 @@
                                     num--;
                                 }
                             }
-                            
+                            console.log(num);
                             $(".data_index").val(num);
                             $(".wf_n").hide();
                             $(".wf_n").eq(num).show();
