@@ -101,12 +101,7 @@
                                         </div>
                                     </li>
                                      <?php } ?>
-                                     <li class="tc fl">
-                                        <div class="wf_z ">
-                                            <div class="c_title">&nbsp</div>
-                                            <div class="col_red c_val"  >&nbsp</div>
-                                        </div>
-                                    </li>
+
                                 </ul>
                             </div>	
                         </li>
@@ -144,6 +139,12 @@
                                         </div>
                                     </li>
                                      <?php } ?>
+                                    <li class="tc fl">
+                                        <div class="">
+                                            <div class="c_title">&nbsp</div>
+                                            <div class="col_red c_val"  >&nbsp</div>
+                                        </div>
+                                    </li> 
                                     
                                 </ul>
                             </div>	
