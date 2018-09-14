@@ -61,10 +61,10 @@
                 <ul class="d_box">
 
                     <li class="d_center">
-                        <div class="f30 d_text2"><span class="col_red info_qishu" >[<?= $this->info28['number'] ?>期]</span>单注<span class="col_red">2元</span>起，<span class="col_red">20000元</span>封顶，总注<span class="col_red">3000000元</span>封顶<br><span class="col_red">★★现状可以开始投注★★</span></div>
+                        <div class="f30 d_text2 tc"><span class="col_red info_qishu" >[<?= $this->info28['number'] ?>期]</span>单注<span class="col_red">2元</span>起，<span class="col_red">20000元</span>封顶，总注<span class="col_red">3000000元</span>封顶<br><span class="col_red">★★现状可以开始投注★★</span></div>
                     </li>
                     <li class="d_center">
-                        <div class="f30 d_text2">聊天窗口已激活，现支持显示他人投注</div>
+                        <div class="f30 d_text2 tc">聊天窗口已激活，现支持显示他人投注</div>
                     </li>
 
                 </ul>
@@ -267,7 +267,7 @@
                                             '</li>'
                                 } else if (cls == 0) {
                                     html += '<li class="d_center">' +
-                                            '   <div class="d_text2"><span class="col_red">[' + game.global.number + '期]已封盘</span>，下注结果已系统开奖为标准，如有异议，请及时联系客服</div>' +
+                                            '   <div class="d_text2 tc"><span class="col_red">[' + game.global.number + '期]已封盘</span>，下注结果已系统开奖为标准，如有异议，请及时联系客服</div>' +
                                             '</li>'
                                 }
                                 $(".d_box").append(html);
@@ -286,13 +286,13 @@
                                 } else if (cls == 2) {
                                     if (msg.uid == uid) {
                                         html += '<li class="d_center">' +
-                                                '   <div class="f30 d_text2"><span class="col_red">[' + msg.number + '期]</span>单注<span class="col_red">2元</span>起，<span class="col_red">20000元</span>封顶，总注<span class="col_red">3000000元</span>封顶<br><span class="col_red">★★现状可以开始投注★★</span></div>' +
+                                                '   <div class="f30 d_text2 tc"><span class="col_red">[' + msg.number + '期]</span>单注<span class="col_red">2元</span>起，<span class="col_red">20000元</span>封顶，总注<span class="col_red">3000000元</span>封顶<br><span class="col_red">★★现状可以开始投注★★</span></div>' +
                                                 '</li>'
                                     }
                                 } else if (cls == 3) {
                                     if (msg.uid == uid) {
                                         html += '<li class="d_center">' +
-                                                '   <div class="d_text2"><span class="col_red">[' + msg.number + '期]已封盘</span>，下注结果已系统开奖为标准，如有异议，请及时联系客服</div>' +
+                                                '   <div class="d_text2 tc"><span class="col_red">[' + msg.number + '期]已封盘</span>，下注结果已系统开奖为标准，如有异议，请及时联系客服</div>' +
                                                 '</li>'
                                     }
                                 } else if (cls == 4) {
@@ -304,13 +304,13 @@
                                 } else if (cls == 5) {
                                     if (msg.uid == uid) {
                                         html += '<li class="d_center">' +
-                                                '   <div class="d_text2"><span class="col_red">[' + msg.number + '期]</span>距离封盘时间不足<span class="col_red">60秒</span>，请抓紧时间下注</div>' +
+                                                '   <div class="d_text2 tc"><span class="col_red">[' + msg.number + '期]</span>距离封盘时间不足<span class="col_red">60秒</span>，请抓紧时间下注</div>' +
                                                 '</li>'
                                     }
                                 }else if (cls == 6) {
                                     if (msg.uid == uid) {
                                         html += '<li class="d_center">' +
-                                                '   <div class="d_text2"><span class="col_red">[' + msg.number + '期]开奖号码：' + msg.name + '</span></div>' +
+                                                '   <div class="d_text2 tc"><span class="col_red">[' + msg.number + '期]开奖号码：' + msg.name + '</span></div>' +
                                                 '</li>'
                                     }
                                 }
