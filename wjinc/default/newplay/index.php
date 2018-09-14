@@ -89,7 +89,7 @@
                         <li class="wf_cont1">
                             <div class="col999 tc f24">中奖和值：<span class="zj_tips">14 15 16 17 18 19 20 21 22 23 24 25 26 27</span></div>
                             <div class="wf_zhi">
-                                <ul class="wf_zhi1 clearfix">
+                                <ul class="wf_zhi1 clearfix" style="height: 2.08rem">
                                     <?php
                                          if ($this->result)    
                                              foreach ($this->result[101] as $key => $var) {
@@ -108,7 +108,7 @@
                         <li class="wf_cont2 hide">
                             <div class="col999 tc f24">中奖号码：<span class="zj_tips">0</span></div>
                             <div class="wf_zhi">
-                                <ul class="wf_zhi1 clearfix">
+                                <ul class="wf_zhi1 clearfix" style="height: 2.08rem; overflow-y: scroll;">
 
                                     <?php
                                          if ($this->result)    
