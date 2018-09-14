@@ -96,8 +96,8 @@
                                      ?>
                                     <li class="tc fl">
                                         <div class="wf_z <?= $key==0?"active":""?>">
-                                            <div class="c_title" data-title="<?= $var['name'] ?>"><?= $var['name'] ?></div>
-                                            <div class="col_red c_val" data-index="wf_cont1" data-id="<?= $var['id'] ?>" data-info="<?= $var['numinfo'] ?>" data-value="<?= $var['money'] ?>"><?= $var['money'] ?></div>
+                                            <div class="c_title c_lineh" data-title="<?= $var['name'] ?>"><?= $var['name'] ?></div>
+                                            <div class="col_red c_lineh c_val" data-index="wf_cont1" data-id="<?= $var['id'] ?>" data-info="<?= $var['numinfo'] ?>" data-value="<?= $var['money'] ?>"><?= $var['money'] ?></div>
                                         </div>
                                     </li>
                                      <?php } ?>
@@ -116,8 +116,8 @@
                                      ?>
                                     <li class="tc fl">
                                         <div class="wf_z <?= $key==0?"active":""?>">
-                                            <div class="c_title" data-title="<?= $var['name'] ?>"><?= $var['name'] ?></div>
-                                            <div class="col_red c_val" data-index="wf_cont2" data-id="<?= $var['id'] ?>" data-info="<?= $var['numinfo'] ?>" data-value="<?= $var['money'] ?>"><?= $var['money'] ?></div>
+                                            <div class="c_title c_lineh" data-title="<?= $var['name'] ?>"><?= $var['name'] ?></div>
+                                            <div class="col_red c_val c_lineh" data-index="wf_cont2" data-id="<?= $var['id'] ?>" data-info="<?= $var['numinfo'] ?>" data-value="<?= $var['money'] ?>"><?= $var['money'] ?></div>
                                         </div>
                                     </li>
                                      <?php } ?>
@@ -134,15 +134,15 @@
                                      ?>
                                     <li class="tc fl">
                                         <div class="wf_z <?= $key==0?"active":""?>">
-                                            <div class="c_title" data-title="<?= $var['name'] ?>"><?= $var['name'] ?></div>
-                                            <div class="col_red c_val" data-index="wf_cont3" data-id="<?= $var['id'] ?>" data-info="<?= $var['numinfo'] ?>" data-value="<?= $var['money'] ?>"><?= $var['money'] ?></div>
+                                            <div class="c_title c_lineh" data-title="<?= $var['name'] ?>"><?= $var['name'] ?></div>
+                                            <div class="col_red c_val c_lineh" data-index="wf_cont3" data-id="<?= $var['id'] ?>" data-info="<?= $var['numinfo'] ?>" data-value="<?= $var['money'] ?>"><?= $var['money'] ?></div>
                                         </div>
                                     </li>
                                      <?php } ?>
                                     <li class="tc fl">
                                         <div class="">
-                                            <div class="c_title">&nbsp</div>
-                                            <div class="col_red c_val"  >&nbsp</div>
+                                            <div class="c_title c_lineh">&nbsp</div>
+                                            <div class="col_red c_val c_lineh"  >&nbsp</div>
                                         </div>
                                     </li> 
                                     
@@ -173,6 +173,7 @@
                 .hi_t{ position: fixed;left:50%;top:50%;width:80%;transform: translate(-50%,-50%); background:#fff; border-radius: .2rem; padding:.2rem 0; }
                 .hi_msg{ padding:.2rem 0; }
                 .hi_btn{  color:#0079fe;border-top:1px solid #eee; padding:.2rem 0 0 0; }
+                .c_lineh{ line-height: .4rem; height: .4rem; }
             </style>
             <div class="hi_pop hide">
                 <div class="hi_mask"></div>
@@ -342,6 +343,7 @@
                 } else {
                     alert('该浏览器不支持web socket');
                 }
+                var onlyht = false;
                 var game = {
                     init: function () {
                         this.bindEvent();
