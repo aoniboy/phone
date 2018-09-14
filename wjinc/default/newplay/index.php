@@ -389,7 +389,7 @@
 
                             var that = $(".wf_cont > li").eq(num);
                             $(".wf_zhi1 li .wf_z").removeClass("active");
-                            $(that).find(".wf_z").addClass("active");
+                            $(that).find(".wf_zhi1 li .wf_z").eq(0).addClass("active");
                             var title = $(that).find(".c_title").attr("data-title");
                             var val = $(that).find(".c_val").attr("data-value");
                             var tips =  $(that).find(".c_val").attr("data-info");
