@@ -381,7 +381,7 @@
                                     num--;
                                 }
                             }
-
+                            console.log(num);
                             $(this).attr("data-index", num);
                             $(".wf_n").hide();
                             $(".wf_n").eq(num).show();
