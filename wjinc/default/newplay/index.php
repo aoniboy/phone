@@ -386,8 +386,18 @@
                             $(".wf_n").eq(num).show();
                             $(".wf_cont> li").hide();
                             $(".wf_cont>li").eq(num).show();
+
                             var that = $(".wf_cont > li").eq(num);
-                            $(that).addClass('11111111');
+                            $(".wf_zhi1 li .wf_z").removeClass("active");
+                            $(that).find(".wf_z").addClass("active");
+                            var title = $(that).find(".c_title").attr("data-title");
+                            var val = $(that).find(".c_val").attr("data-value");
+                            var tips =  $(that).find(".c_val").attr("data-info");
+                            var sindex =  $(that).find(".c_val").attr("data-index");
+                            console.log(sindex,2222222);
+                            $(".f_title").val(title);
+                            $(".f_val").val(val);
+                            $("."+sindex+" .zj_tips").text(tips);
                         })
                         $(".wf_zhi1 li").click(function () {
                             $(".wf_zhi1 li .wf_z").removeClass("active");
