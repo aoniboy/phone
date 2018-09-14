@@ -380,12 +380,14 @@
                                     num--;
                                 }
                             }
-                            console.log(num,3333334);
+
                             $(this).attr("data-index", num);
                             $(".wf_n").hide();
                             $(".wf_n").eq(num).show();
                             $(".wf_cont> li").hide();
                             $(".wf_cont>li").eq(num).show();
+                            var that = $(".wf_cont > li").eq(num);
+                            $(that).addClass('11111111');
                         })
                         $(".wf_zhi1 li").click(function () {
                             $(".wf_zhi1 li .wf_z").removeClass("active");
