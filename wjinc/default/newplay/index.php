@@ -72,8 +72,6 @@
                 <div class="top_text">
 
 
-
-
                 </div>
             </div>
             <div class="tc fff tz_bg"><div class="tz_btns tc">投注</div></div>
@@ -103,6 +101,12 @@
                                         </div>
                                     </li>
                                      <?php } ?>
+                                     <li class="tc fl">
+                                        <div class="wf_z ">
+                                            <div class="c_title">&nbsp</div>
+                                            <div class="col_red c_val"  >&nbsp</div>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>	
                         </li>
