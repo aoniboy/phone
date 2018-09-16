@@ -176,7 +176,7 @@ input:focus,select{outline:0;}
 .select_title{ background: #fff; }
 .select_title li{ width:33.3333%; float: left; font-size: .22rem;}
 .select_title li div { padding:.2rem 0; text-align: center; border-bottom: 1px solid #5d5c5c; border-right:1px solid #5d5c5c; }
-.gameo_mask{ position: fixed;left:0;top:0; background: rgba(0,0,0,0.7);width:100%;height: 100%;z-index:998; }
+.gameo_mask{ position: fixed;left:0;top:0; background: rgba(0,0,0,0.7);width:100%;height: 100%; }
 .select_title li:nth-child(3n) div{ border-right:none; }
 .hint_pop{  }
 .hint_title{color:#000; padding:.3rem 0 .1rem 0;}
@@ -351,8 +351,8 @@ table {table-layout: fixed;}
 .newdh .d_right .d_float{ float: right ;margin-left:0;margin-right: .1rem}
 .newdh .d_right .bg_red{ background: #ff9000; border-radius: .2rem; border-top-right-radius: 0; }
 .newdh .d_box li{ margin-bottom: .1rem; }
-.newdh .d_text1{background: #d8d8d8; padding: .1rem .3rem;display: inline-block;border-radius: .1rem;text-align: center; margin: 0 auto;}
-.newdh .d_text2{ width:64%;margin:0 auto; background: #d8d8d8; padding:.1rem .2rem; border-radius: .1rem;}
+.newdh .d_text1{background: #d8d8d8; padding: .1rem .2rem;border-radius: .1rem;text-align: center; margin: 0 auto;width:75%;}
+.newdh .d_text2{ width:75%;margin:0 auto; background: #d8d8d8; padding:.1rem .2rem; border-radius: .1rem;}
 .newdh .d_text1,.d_text2{margin-top: .2rem;}
 .newdh .top_text{ padding-bottom: 1.4rem }
 .newdh .tz_bg{position: fixed;left:0;bottom:0;width: 100%; background:#f4f4f4;}

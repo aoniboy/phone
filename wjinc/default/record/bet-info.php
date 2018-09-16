@@ -71,7 +71,13 @@
 			<td><em>返点金额：</em><span class="red"><?=$this->iff($bet['lotteryNo'], number_format(($bet['fanDian']/100)*$betCont, 2). '元', '－')?></span></td>
         </tr>
         <tr>
-			<td><em>中奖注数：</em><span class="red"><?=$this->iff($bet['lotteryNo'], $bet['bonus']/$bet['bonusProp'].'注', '－')?></span></td>
+                        <td><em>中奖注数：</em><span class="red">
+                            <?php if(in_array($bet['type'],array(54,55))){ 
+                                echo $this->iff($bet['lotteryNo'],'1注', '－');
+                                        
+                            } else{ echo $this->iff($bet['lotteryNo'], $bet['bonus']/$bet['bonusProp'].'注', '－') ;
+                                    
+                            }?></span></td>
         </tr>
         <tr>
 			<td><em>中奖金额：</em><span class="red"><?=$this->iff($bet['lotteryNo'], number_format($bet['bonus'], 2) .'元', '－')?></span></td>

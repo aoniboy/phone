@@ -6,10 +6,17 @@ $type = 54;
 
 //$result = $db->getRow("SELECT * FROM ssc_data_time WHERE type =$type order by id desc LIMIT 1 ");
 //print_r($result);
-for($i = 27;$i<28;$i++) {
-    $sql = "INSERT INTO ssc_played(name,enable,type,bonusProp,bonusPropBase,selectNum,groupId,numinfo,ruleFun,betCountFun,zjMax)";
-    $sql .= "values($i,1,8,14,14,1,102,$i,'calc28num','calc28num','calc28nummax')";
-    $db->insert($sql);
+//for($i = 27;$i<28;$i++) {
+//    $sql = "INSERT INTO ssc_played(name,enable,type,bonusProp,bonusPropBase,selectNum,groupId,numinfo,ruleFun,betCountFun,zjMax)";
+//    $sql .= "values($i,1,8,14,14,1,102,$i,'calc28num','calc28num','calc28nummax')";
+//    $db->insert($sql);
+//}
+$sql = "select * from ssc_played where id > 315";
+$result = $db->getRows($sql);
+foreach($result as $k=>$v) {
+    $info = sprintf("%.5f",$v['bonusProp']/1950);
+    $sql = "UPDATE ssc_played set bonusPropProportion = '{$info}' where id ={$v['id']}";
+    $db->update($sql);
 }
 exit;
 

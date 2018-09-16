@@ -205,24 +205,41 @@ class Index extends WebLoginBase {
         $this->display('index/inc_data_history_left.php');
     }
 
-    //websocket
-    public final function newdh($type = null, $groupId = null, $played = null) {
-        $tmp = array();
-        //
-        $this->display('newdh/index.php');
-    }
+
 
     //websocket
     public final function jnd28() {
         $type = 55;
-        
+        $sql = "select defaultodds from {$this->prename}member_odds where gameid =8 and uid = {$this->user['uid']} order by id desc";
+        $userProp = $this->getRow($sql);
+        $sql = "select id from {$this->prename}played_group where type =8 and enable = 1 order by sort";
+        $data = $this->getRows($sql);
+        $result = array();
+        foreach ($data as $key => $val) {
+            $sql = "select id,name,selectNum,groupId,numinfo,simpleInfo,bonusProp, bonusPropBase,bonusPropProportion,betCountFun from {$this->prename}played where  groupId= ? and enable = 1 ";
+            $tmp = $this->getRows($sql, $val['id']);
+            foreach ($tmp as $k => $v) {
+                $propInfo = explode(".",$v['bonusProp']);
+                if(isset($propInfo[1])) {
+                    
+                    if($propInfo[1] == '00') {
+                        $v['money'] = round($userProp['defaultodds'] * $v['bonusPropProportion']);
+                    } else if($propInfo[1] == '95') {
+                        $v['money'] = sprintf("%.2f", $userProp['defaultodds'] * $v['bonusPropProportion']);
+                    }else {
+                        $v['money'] =  sprintf("%.1f", $userProp['defaultodds'] * $v['bonusPropProportion']);
+                    }
+                    
+                }
+                $result[$val['id']][] = $v;
+            }
+        }
         $no = '';
-        
         $info28['number'] = $no;
-        
         $this->info28 = $info28;
         $this->ftype = $type;
         $this->pageTitle = "加拿大28";
+        $this->result = $result;
         $this->display('newplay/index.php');
     }
 
@@ -237,19 +254,31 @@ class Index extends WebLoginBase {
         foreach ($data as $key => $val) {
             $sql = "select id,name,selectNum,groupId,numinfo,simpleInfo,bonusProp, bonusPropBase,bonusPropProportion,betCountFun from {$this->prename}played where  groupId= ? and enable = 1 ";
             $tmp = $this->getRows($sql, $val['id']);
-            foreach ($tmp as $k=>$v) {
-                $v['money'] = sprintf("%.2f",$userProp['defaultodds']*$v['bonusPropProportion']);
+            foreach ($tmp as $k => $v) {
+                $propInfo = explode(".",$v['bonusProp']);
+                if(isset($propInfo[1])) {
+                    
+                    if($propInfo[1] == '00') {
+                        $v['money'] = round($userProp['defaultodds'] * $v['bonusPropProportion']);
+                    } else if($propInfo[1] == '95') {
+                        $v['money'] = sprintf("%.2f", $userProp['defaultodds'] * $v['bonusPropProportion']);
+                    }else {
+                        $v['money'] =  sprintf("%.1f", $userProp['defaultodds'] * $v['bonusPropProportion']);
+                    }
+                    
+                }
+                 
+                
                 $result[$val['id']][] = $v;
             }
         }
         $no = '';
-        $info28['number'] = $no ;
+        $info28['number'] = $no;
         $this->info28 = $info28;
         $this->ftype = $type;
         $this->pageTitle = "北京28";
         $this->result = $result;
         $this->display('newplay/index.php');
     }
-
 
 }

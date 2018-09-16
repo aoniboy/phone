@@ -1,7 +1,7 @@
 <?php
 class Object extends DBAccess{
 	public static $version='JMS 3.0';
-	public $sversion='?v=2018050211';
+	public $sversion='?v=2018091511';
 	public $actionTemplate;
 	public $debugLevel=0;
 	public $logFileName='log/jms-server-custom.log';
