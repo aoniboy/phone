@@ -17,7 +17,7 @@
         <input class="f_type" type="hidden" value="<?= $this->ftype ?>">
         <div class="title_top tc" style="position: fixed;width:100%;">
             <a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a>
-            <span class="iconfont icon-jilu iconright"></span>
+            <span class="iconfont icon-jilu iconright" style="right: .8rem"></span>
             <span class="iconfont icon-gantanhao iconright"></span>
             <span class="gameo_titles"><?= $this->pageTitle ?><br></span>
         </div>
