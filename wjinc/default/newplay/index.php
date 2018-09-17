@@ -565,11 +565,11 @@
                         bonus: 0
                     },
                     bindEvent: function () {
-                        $(".btn_lb").on("clikc",function(){
+                        $(".btn_lb").on("click",function(){
                             $(".go_pop").show();
                             game.getOrder();
                         })
-                        $(".go_close").on("clikc",function(){
+                        $(".go_close").on("click",function(){
                             $(".go_pop").hide();
                         })
 
