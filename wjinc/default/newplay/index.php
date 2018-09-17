@@ -188,6 +188,21 @@
                 </div>
             </div>
         </div>	
+        <table class="gameo_list">
+            <thead>
+                <tr>
+                    <th>单号</th>
+                    <th>彩种</th>
+                    <th>玩法</th>
+                    <th>期号</th>
+                    <th>金额</th>
+                    <th>操作</th> 
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
         <div class="fandian-k" style="display: none"> <span class="spn8">奖金/返点：</span>
             <div class="fandian-box">
                 <input type="button" class="min" value="" step="-0.1"/>
@@ -1082,6 +1097,47 @@
                             }
                         }
                         document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+                    },
+                    getOrder: function () {
+                        //默认底部数据
+                        $.post('/index.php/game/getOrdered/' + game.global.cid, function (data) {
+                            if (!data.code) {
+                                var list = data.data;
+                                var html = '';
+                                var text = '';
+                                var prize_col = '';
+                                for (var i = 0; i < list.length; i++) {
+                                    if (list[i].status == 1) {
+                                        text = '已撤单';
+                                        prize_col = '';
+                                    } else if (list[i].status == 2) {
+                                        text = '未开奖';
+                                        prize_col = '';
+                                    } else if (list[i].status == 3) {
+                                        text = '中奖';
+                                        prize_col = 'prize_win';
+                                    } else if (list[i].status == 4) {
+                                        text = '未中奖';
+                                        prize_col = '';
+                                    } else if (list[i].status == 5) {
+                                        text = '撤单';
+                                        prize_col = 'prize_col';
+                                    }
+                                    html += '    <tr>'
+                                    html += '        <td data-id="' + list[i].id + '" class="orderdetail" >' + list[i].wjorderId + '</td>'
+                                    html += '        <td>' + list[i].gamename + '</td>'
+                                    html += '        <td>' + list[i].playname + '</td>'
+                                    html += '        <td>' + list[i].actionNo + '</td>'
+                                    html += '        <td>' + list[i].money + '</td>'
+                                    html += '        <td id="' + list[i].id + '" class="' + prize_col + '">' + text + '</td>'
+                                    html += '    </tr>'
+                                }
+                                $(".gameo_list tbody").html(html);
+                            } else {
+                                $(".hint_pop .hint_cont").text(data.msg);
+                                $(".hint_pop").show();
+                            }
+                        }, 'json');
                     },
                 }
                 game.init();
