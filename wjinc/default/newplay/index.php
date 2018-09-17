@@ -183,10 +183,10 @@
               
                 .go_title{ display: flex }
                 .go_title span{ flex: 1;text-align: center;background: #fb3e3a;padding: .1rem 0;color: #fff;}
-                .gameo_list{max-height: 350px; overflow-y: scroll;background: #fff;}
+                .gameo_list{max-height: 350px; overflow-y: scroll;background: #fff; margin: 0; padding:.1rem 0;}
                 .gameo_list li{ display: flex; }
                 .gameo_list li span{ flex: 1 ;text-align: center; overflow: hidden; font-size: .2rem;}
-                .go_close{ text-align: center; margin: .4rem auto 0 auto; }
+                .go_close{ text-align: center; margin: .3rem auto 0 auto; }
             </style>
             <div class="hi_pop hide">
                 <div class="hi_mask"></div>
@@ -212,7 +212,7 @@
                     <span></span>
                 </li>
             </ul>
-            <div class="iconfont icon-guanbi fff go_close"></div>
+            <div class="iconfont icon-guanbi fff go_close f38</div>
         </div>
         </div>
         <div class="fandian-k" style="display: none"> <span class="spn8">奖金/返点：</span>
