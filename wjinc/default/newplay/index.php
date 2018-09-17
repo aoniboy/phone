@@ -180,6 +180,10 @@
                 .c_lineh{ line-height: .4rem; height: .4rem; }
                 .go_box{ position: fixed;left:50%;top:50%;transform: translate(-50%,-50%); background: rgba(0,0,0,0.5); }
                 .ddsf{max-height: 50px; height: 50px; overflow-y: scroll}
+                .go_title{ display: flex }
+                .go_title span{ flex: 1;text-align: center; }
+                .gameo_list li{ display: flex; }
+                .go_title li span{ flex: 1 }
             </style>
             <div class="hi_pop hide">
                 <div class="hi_mask"></div>
@@ -191,19 +195,21 @@
             </div>
         </div>
         <div class="go_box">
-        <table class="gameo_list">
-            <thead>
-                <tr>
-                    <th>单号</th>
-                    <th>彩种</th>
-                    <th>玩法</th>
-                    <th>期号</th>
-                    <th>金额</th>
-                    <th>操作</th> 
-                </tr>
-            </thead>
-<tbody style="max-height: 50px;height: 50px;overflow-y: scroll;">    <tr>        <td data-id="662791" class="orderdetail">54316ZIQ</td>        <td>北京28</td>        <td>大</td>        <td>910360</td>        <td>1</td>        <td id="662791" class="">未中奖</td>    </tr>    <tr>        <td data-id="662790" class="orderdetail">54317HJP</td>        <td>北京28</td>        <td>小</td>        <td>910359</td>        <td>2</td>        <td id="662790" class="">未中奖</td>    </tr>    <tr>        <td data-id="662789" class="orderdetail">5431603E</td>        <td>北京28</td>        <td>大</td>        <td>910359</td>        <td>2</td>        <td id="662789" class="prize_win">中奖</td>    </tr>    <tr>        <td data-id="662788" class="orderdetail">54316926</td>        <td>北京28</td>        <td>大</td>        <td>910359</td>        <td>2</td>        <td id="662788" class="prize_win">中奖</td>    </tr>    <tr>        <td data-id="662783" class="orderdetail">54316PYQ</td>        <td>北京28</td>        <td>大</td>        <td>910347</td>        <td>1</td>        <td id="662783" class="">未中奖</td>    </tr>    <tr>        <td data-id="662782" class="orderdetail">54317TBJ</td>        <td>北京28</td>        <td>小</td>        <td>910347</td>        <td>1</td>        <td id="662782" class="prize_win">中奖</td>    </tr>    <tr>        <td data-id="662781" class="orderdetail">5431649R</td>        <td>北京28</td>        <td>大</td>        <td>910347</td>        <td>1</td>        <td id="662781" class="">未中奖</td>    </tr>    <tr>        <td data-id="662780" class="orderdetail">54316AZA</td>        <td>北京28</td>        <td>大</td>        <td>910347</td>        <td>1</td>        <td id="662780" class="">未中奖</td>    </tr>    <tr>        <td data-id="662779" class="orderdetail">54316VT8</td>        <td>北京28</td>        <td>大</td>        <td>910347</td>        <td>1</td>        <td id="662779" class="">未中奖</td>    </tr>    <tr>        <td data-id="662778" class="orderdetail">54316ATX</td>        <td>北京28</td>        <td>大</td>        <td>910347</td>        <td>1</td>        <td id="662778" class="">未中奖</td>    </tr></tbody>
-        </table>
+            <div class="go_title">
+                <div>
+                    <span>单号</span>
+                    <span>彩种</span>
+                    <span>玩法</span>
+                    <span>期号</span>
+                    <span>金额</span>
+                    <span>操作</span> 
+                </div>
+            </div>
+            <ul class="gameo_list">
+                <li>
+                    <span></span>
+                </li>
+            </ul>
         </div>
         <div class="fandian-k" style="display: none"> <span class="spn8">奖金/返点：</span>
             <div class="fandian-box">
@@ -1126,16 +1132,16 @@
                                         text = '撤单';
                                         prize_col = 'prize_col';
                                     }
-                                    html += '    <tr>'
-                                    html += '        <td data-id="' + list[i].id + '" class="orderdetail" >' + list[i].wjorderId + '</td>'
-                                    html += '        <td>' + list[i].gamename + '</td>'
-                                    html += '        <td>' + list[i].playname + '</td>'
-                                    html += '        <td>' + list[i].actionNo + '</td>'
-                                    html += '        <td>' + list[i].money + '</td>'
-                                    html += '        <td id="' + list[i].id + '" class="' + prize_col + '">' + text + '</td>'
-                                    html += '    </tr>'
+                                    html += '    <li>'
+                                    html += '        <span data-id="' + list[i].id + '" class="orderdetail" >' + list[i].wjorderId + '</span>'
+                                    html += '        <span>' + list[i].gamename + '</span>'
+                                    html += '        <span>' + list[i].playname + '</span>'
+                                    html += '        <span>' + list[i].actionNo + '</span>'
+                                    html += '        <span>' + list[i].money + '</span>'
+                                    html += '        <span id="' + list[i].id + '" class="' + prize_col + '">' + text + '</td>'
+                                    html += '    </li>'
                                 }
-                                $(".gameo_list tbody").html(html);
+                                $(".gameo_list").html(html);
                             } else {
                                 $(".hint_pop .hint_cont").text(data.msg);
                                 $(".hint_pop").show();
