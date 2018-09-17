@@ -553,6 +553,7 @@
                         bonus: 0
                     },
                     bindEvent: function () {
+                        game.getOrder();
                         game.betInfo.fandian = $('#slider').attr('fan-dian');
                         var that = $(".wf_cont > li").eq(0);
                         $(".wf_zhi1 li .wf_z").removeClass("active");
