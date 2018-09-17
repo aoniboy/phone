@@ -212,7 +212,7 @@
                         <span></span>
                     </li>
                 </ul>
-                <div class="iconfont icon-guanbi fff go_close f38"></div>
+                <div class="iconfont icon-guanbi fff go_close" style="font-size: 22px"></div>
             </div>
         </div>
         <div class="fandian-k" style="display: none"> <span class="spn8">奖金/返点：</span>
