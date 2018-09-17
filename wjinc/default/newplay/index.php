@@ -179,6 +179,7 @@
                 .hi_btn{  color:#0079fe;border-top:1px solid #eee; padding:.2rem 0 0 0; }
                 .c_lineh{ line-height: .4rem; height: .4rem; }
                 .go_box{ position: fixed;left:50%;top:50%;transform: translate(-50%,-50%); background: rgba(0,0,0,0.5); }
+                .ddsf{max-height: 50px; height: 50px; overflow-y: scroll}
             </style>
             <div class="hi_pop hide">
                 <div class="hi_mask"></div>
@@ -201,7 +202,7 @@
                     <th>操作</th> 
                 </tr>
             </thead>
-            <tbody style="max-height: 50px; height: 50px; overflow-y: scroll">
+            <tbody style="" class="ddsf">
 
             </tbody>
         </table>
