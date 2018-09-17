@@ -178,6 +178,7 @@
                 .hi_msg{ padding:.2rem 0; }
                 .hi_btn{  color:#0079fe;border-top:1px solid #eee; padding:.2rem 0 0 0; }
                 .c_lineh{ line-height: .4rem; height: .4rem; }
+                .go_box{ position: fixed;left:50%;top:50%;transform: translate(-50%,-50%); background: rgba(0,0,0,0.5); }
             </style>
             <div class="hi_pop hide">
                 <div class="hi_mask"></div>
@@ -187,7 +188,8 @@
                     <div class="hi_btn tc">确定</div>
                 </div>
             </div>
-        </div>	
+        </div>
+        <div class="go_box">
         <table class="gameo_list">
             <thead>
                 <tr>
@@ -199,10 +201,11 @@
                     <th>操作</th> 
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="max-height: 50px; overflow-y: scroll">
 
             </tbody>
         </table>
+        </div>
         <div class="fandian-k" style="display: none"> <span class="spn8">奖金/返点：</span>
             <div class="fandian-box">
                 <input type="button" class="min" value="" step="-0.1"/>
