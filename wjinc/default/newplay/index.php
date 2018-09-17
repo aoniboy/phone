@@ -196,14 +196,12 @@
         </div>
         <div class="go_box">
             <div class="go_title">
-                <div>
                     <span>单号</span>
                     <span>彩种</span>
                     <span>玩法</span>
                     <span>期号</span>
                     <span>金额</span>
                     <span>操作</span> 
-                </div>
             </div>
             <ul class="gameo_list">
                 <li>
