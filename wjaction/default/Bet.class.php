@@ -1894,4 +1894,9 @@ class Bet {
         return $num;
     }
 
+    public static function calc28numbaozi($a, $b) {
+        $num = 1;
+        
+        return $num;
+    }
 }

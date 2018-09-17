@@ -162,7 +162,7 @@ class WebBase extends Object {
         }
         $types = $this->getTypes();
         if (($fun = $types[$type]['onGetNoed']) && method_exists($this, $fun)) {
-            $this->$fun($return['actionNo'], $return['actionTime'], $time);
+            $this->$fun($return['actionNo'], $return['actionTime'], $time,true);
         }
         return $return;
     }
@@ -337,11 +337,30 @@ class WebBase extends Object {
         $actionNo = 179 * (strtotime(date('Y-m-d', $time)) - strtotime('2004-10-11')) / 3600 / 24 + $actionNo - 622;
     }
 
-    public function jnd28(&$actionNo, &$actionTime, $time = null) {
-        $info  = $this->getRow("select * from ssc_data where type = 55 order by id desc");
-        $actionTime = date("Y-m-d H:i:s",$info['time']+210);
-        $this->set28TimeNo($actionTime, $time);
-        $actionNo = $info['number']+1;
+    public function jnd28(&$actionNo, &$actionTime, $time = null,$flag=false) {
+        if($flag) {
+            $info  = $this->getRow("select * from ssc_data where type = 55 order by id desc");
+            $actionTime = date("Y-m-d H:i:s",$info['time']);
+            if(time() - strtotime($actionTime) >210) {
+                $actionTime = date("Y-m-d H:i:s",$info['time']+210-10);
+                $this->set28TimeNo($actionTime, $time);
+                $actionNo = $info['number']+1;
+            } else {
+                $this->set28TimeNo($actionTime, $time);
+                $actionNo = $info['number'];
+            }
+        }else {
+            $info  = $this->getRow("select * from ssc_data where type = 55 order by id desc");
+            $actionTime = date("Y-m-d H:i:s",$info['time']+210-10);
+            if(time() - strtotime($actionTime) >0) {
+                $actionTime = date("Y-m-d H:i:s",$info['time']+210-10 + 210 -10);
+                $this->set28TimeNo($actionTime, $time);
+                $actionNo = $info['number']+2;
+            } else {
+                $this->set28TimeNo($actionTime, $time);
+                $actionNo = $info['number']+1;
+            }
+        }
     }
 
     /**

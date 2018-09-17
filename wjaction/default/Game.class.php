@@ -235,6 +235,7 @@ class Game extends WebLoginBase {
         $actionNo['diffKTime'] = $kjDiffTime;
         $actionNo['diffFTime'] = $kjdTime;
         $actionNo['timestamp'] = strtotime($actionNo['actionTime']);
+        $actionNo['nowtimestamp'] = time();
         $data['name'] = $this->types[$type]['title'];
         $data['actionNo'] = $actionNo;
         $data['lastNo'] = $lastNo;
@@ -525,7 +526,7 @@ class Game extends WebLoginBase {
                 $this->outputData(1, array(), '提交奖金大于最大奖金，请重新投注');
             if ($code['bonusProp'] < 0)
                 $this->outputData(1, array(), '提交奖金小于最小奖金，请重新投注');
-            if (intval($chkBonus) != intval($code['bonusProp']))
+            if (intval($chkBonus) < intval($code['bonusProp']))
                 $this->outputData(1, array(), '提交奖金出错，请重新投注');
             //检查返点
             if (floatval($code['fanDian']) > floatval($this->user['fanDian']) || floatval($code['fanDian']) > floatval($this->settings['fanDianMax']))
@@ -538,7 +539,7 @@ class Game extends WebLoginBase {
                 if ($code['mode'] != 2 && $code['mode'] != 0.2 && $code['mode'] != 0.02)
                     $this->outputData(1, array(), '模式出错，请重新投注');
             }else {
-                if ($code['mode'] != 2 && $code['mode'] != 0.2)
+                if ($code['mode'] != 1 && $code['mode'] != 0.1)
                     $this->outputData(1, array(), '模式出错，请重新投注');
             }
 
