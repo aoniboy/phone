@@ -17,7 +17,7 @@
         <input class="f_type" type="hidden" value="<?= $this->ftype ?>">
         <div class="title_top tc" style="position: fixed;width:100%;">
             <a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a>
-            <span class="iconfont icon-jilu iconright" style="right: .8rem"></span>
+            <span class="iconfont icon-jilu iconright btn_lb" style="right: .8rem"></span>
             <span class="iconfont icon-gantanhao iconright"></span>
             <span class="gameo_titles"><?= $this->pageTitle ?><br></span>
         </div>
@@ -197,23 +197,23 @@
                 </div>
             </div>
         </div>
-        <div class="go_pop">
-        <div class="go_box">
-            <div class="go_title">
-                    <span>单号</span>
-                    <span>彩种</span>
-                    <span>玩法</span>
-                    <span>期号</span>
-                    <span>金额</span>
-                    <span>操作</span> 
+        <div class="go_pop hide">
+            <div class="go_box">
+                <div class="go_title">
+                        <span>单号</span>
+                        <span>彩种</span>
+                        <span>玩法</span>
+                        <span>期号</span>
+                        <span>金额</span>
+                        <span>操作</span> 
+                </div>
+                <ul class="gameo_list">
+                    <li>
+                        <span></span>
+                    </li>
+                </ul>
+                <div class="iconfont icon-guanbi fff go_close f38"></div>
             </div>
-            <ul class="gameo_list">
-                <li>
-                    <span></span>
-                </li>
-            </ul>
-            <div class="iconfont icon-guanbi fff go_close f38"></div>
-        </div>
         </div>
         <div class="fandian-k" style="display: none"> <span class="spn8">奖金/返点：</span>
             <div class="fandian-box">
@@ -565,7 +565,14 @@
                         bonus: 0
                     },
                     bindEvent: function () {
-                        game.getOrder();
+                        $(".btn_lb").on("clikc",function(){
+                            $(".go_pop").show();
+                            game.getOrder();
+                        })
+                        $(".go_close").on("clikc",function(){
+                            $(".go_pop").hide();
+                        })
+
                         game.betInfo.fandian = $('#slider').attr('fan-dian');
                         var that = $(".wf_cont > li").eq(0);
                         $(".wf_zhi1 li .wf_z").removeClass("active");
