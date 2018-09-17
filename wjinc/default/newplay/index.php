@@ -178,10 +178,12 @@
                 .hi_msg{ padding:.2rem 0; }
                 .hi_btn{  color:#0079fe;border-top:1px solid #eee; padding:.2rem 0 0 0; }
                 .c_lineh{ line-height: .4rem; height: .4rem; }
-                .go_box{ position: fixed;left:50%;top:50%;transform: translate(-50%,-50%); background: rgba(0,0,0,0.5); }
-                .ddsf{max-height: 50px; height: 50px; overflow-y: scroll}
+                .go_pop{ position: fixed;left:50%;top:50%;transform: translate(-50%,-50%); background: rgba(0,0,0,0.5);}
+                .go_box{  width: 85%; }
+                .ddsf{}
                 .go_title{ display: flex }
                 .go_title span{ flex: 1;text-align: center; }
+                .gameo_list{max-height: 100px; overflow-y: scroll}
                 .gameo_list li{ display: flex; }
                 .go_title li span{ flex: 1 }
             </style>
@@ -194,6 +196,7 @@
                 </div>
             </div>
         </div>
+        <div class="go_pop">
         <div class="go_box">
             <div class="go_title">
                     <span>单号</span>
@@ -208,6 +211,7 @@
                     <span></span>
                 </li>
             </ul>
+        </div>
         </div>
         <div class="fandian-k" style="display: none"> <span class="spn8">奖金/返点：</span>
             <div class="fandian-box">
