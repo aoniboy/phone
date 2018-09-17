@@ -179,13 +179,13 @@
                 .hi_btn{  color:#0079fe;border-top:1px solid #eee; padding:.2rem 0 0 0; }
                 .c_lineh{ line-height: .4rem; height: .4rem; }
                 .go_pop{ position: fixed;left:50%;top:50%;width:100%;height:100%;transform: translate(-50%,-50%); background: rgba(0,0,0,0.5);}
-                .go_box{  width: 85%;position: fixed;left:50%;top:50%;transform: translate(-50%,-50%); background: #fff; }
+                .go_box{  width: 85%;position: fixed;left:50%;top:50%;transform: translate(-50%,-50%); background: #fff;  }
               
                 .go_title{ display: flex }
                 .go_title span{ flex: 1;text-align: center;background: #fb3e3a;padding: .1rem 0;color: #fff;}
-                .gameo_list{max-height: 100px; overflow-y: scroll}
+                .gameo_list{max-height: 350px; overflow-y: scroll}
                 .gameo_list li{ display: flex; }
-                .gameo_list li span{ flex: 1 ;text-align: center;}
+                .gameo_list li span{ flex: 1 ;text-align: center; overflow: hidden; font-size: .2rem;}
             </style>
             <div class="hi_pop hide">
                 <div class="hi_mask"></div>
