@@ -178,9 +178,9 @@
                 .hi_msg{ padding:.2rem 0; }
                 .hi_btn{  color:#0079fe;border-top:1px solid #eee; padding:.2rem 0 0 0; }
                 .c_lineh{ line-height: .4rem; height: .4rem; }
-                .go_pop{ position: fixed;left:50%;top:50%;transform: translate(-50%,-50%); background: rgba(0,0,0,0.5);}
-                .go_box{  width: 85%; }
-                .ddsf{}
+                .go_pop{ width:100%;height:100%;transform: translate(-50%,-50%); background: rgba(0,0,0,0.5);}
+                .go_box{  width: 85%;position: fixed;left:50%;top:50%;transform: translate(-50%,-50%); }
+              
                 .go_title{ display: flex }
                 .go_title span{ flex: 1;text-align: center; }
                 .gameo_list{max-height: 100px; overflow-y: scroll}
