@@ -961,7 +961,7 @@
                                     if (!data.code) {
                                         if (data.data.kjNo) {
                                             clearInterval(game.global.gametimer);
-
+                                            game.getOrder();
                                             game.is_false = false;
                                             game.global.kjtimer = false;
                                             clearInterval(kjtimer);
