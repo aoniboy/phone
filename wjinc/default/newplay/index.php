@@ -711,7 +711,7 @@
                             $(".hi_pop").hide();
                         })
                         //撤单
-                        $('gameo_list').on('click', 'span.prize_col', function () {
+                        $('.gameo_list').on('click', 'span.prize_col', function () {
                             var r = confirm("确定撤单么?");
                             if (r == true) {
                                 var id = $(this).attr('id');
