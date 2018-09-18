@@ -215,6 +215,21 @@
                 <div class="iconfont icon-guanbi fff go_close" style="font-size: 22px"></div>
             </div>
         </div>
+        <div class="detail_pop hide">
+            <div class="gameo_mask"></div>
+            <div class="detail_box">
+                <div class="detail_top f33">投注信息 </div>
+                <div class="detail_table tc" style="" scrolltop="0" scrollleft="0">
+                    
+                </div>
+                <div class="">
+                    <div class="detail_btn tc">
+                        <button type="button" style="border:none; border-radius:5px;padding:.1rem .5rem" class="detail_close f26">关闭</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="fandian-k" style="display: none"> <span class="spn8">奖金/返点：</span>
             <div class="fandian-box">
                 <input type="button" class="min" value="" step="-0.1"/>
@@ -729,6 +744,18 @@
                             }
 
                             return false;
+                        })
+                        //查看详情
+                        $('.gameo_list').on('click', 'span.orderdetail', function(){
+                            var id = $(this).attr('data-id');
+                            $.post('/index.php/record/betInfo/'+id,function(data){
+                                $(".detail_pop").show();
+                                $('.detail_table').html(data);
+                            },'text' );
+                            return false;
+                        })
+                        $(".detail_close").on('touchend', function(){
+                            $(".detail_pop").hide();
                         })
                     },
                     submitGame: function () {
