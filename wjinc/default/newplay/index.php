@@ -183,7 +183,7 @@
               
                 .go_title{ display: flex }
                 .go_title span{ flex: 1;text-align: center;background: #fb3e3a;padding: .1rem 0;color: #fff;}
-                .gameo_list{max-height: 350px; overflow-y: scroll;background: #fff; margin: 0; padding:.1rem 0;}
+                .gameo_list{height: 350px; overflow-y: scroll;background: #fff; margin: 0; padding:.1rem 0;}
                 .gameo_list li{ display: flex; }
                 .gameo_list li span{ flex: 1 ;text-align: center; overflow: hidden; font-size: .2rem;}
                 .go_close{ text-align: center; margin: .3rem auto 0 auto; }
