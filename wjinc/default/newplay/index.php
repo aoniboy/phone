@@ -710,6 +710,26 @@
                         $(".hi_btn").click(function () {
                             $(".hi_pop").hide();
                         })
+                        //撤单
+                        $('gameo_list').on('click', 'span.prize_col', function () {
+                            var r = confirm("确定撤单么?");
+                            if (r == true) {
+                                var id = $(this).attr('id');
+                                $.post('/index.php/game/deleteCode/' + id, function (data) {
+                                    if (!data.code) {
+                                        $(".hint_pop .hint_title").text('提示');
+                                        $(".hint_pop .hint_cont").text('撤单成功');
+                                        $(".hint_pop").show();
+                                    } else {
+                                        $(".hint_pop .hint_cont").text(data.msg);
+                                        $(".hint_pop").show();
+                                    }
+                                    game.getOrder();
+                                }, 'json');
+                            }
+
+                            return false;
+                        })
                     },
                     submitGame: function () {
                         $(".tz_btns").click(function () {
