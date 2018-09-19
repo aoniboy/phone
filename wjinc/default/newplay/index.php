@@ -254,157 +254,23 @@
                 var uid = $('.f_uid').val();
                 var ftype = $('.f_type').val();
                 var i = 0;
-                //function connect() {
-                if (window.WebSocket) {
-                    websocket = new WebSocket(wsurl);
-
-                    //连接建立
-                    websocket.onopen = function (evevt) {
-                        console.log("Connected to WebSocket server.");
-                        //用户进来
-
-                        var msg = {
-                            type: 'system',
-                            name: name,
-                            uid: uid,
-                            class: 1,
-                            ftype: ftype
-                        };
-                        websocket.send(JSON.stringify(msg));
-                        // $('.show-area').append('<p class="bg-info message"><i class="glyphicon glyphicon-info-sign"></i>Connected to WebSocket server!</p>');
-                    }
-                    //收到消息
-                    websocket.onmessage = function (event) {
-                        var msg = JSON.parse(event.data); //解析收到的json消息数据
-                        var type = msg.type;
-                        console.log(msg)
-                        var fmtype = msg.ftype;
-                        if (fmtype == ftype) {
-                            if (type == 'usermsg') {
-                                var cls = msg.class;
-                                var html = '';
-                                if (cls == 1) {
-                                    if (msg.uid == uid) {
-                                        html += '<li class="d_right">' +
-                                                '   <div class="tc col999 f24">' + msg.time + '</div>' +
-                                                '   <div class="clearfix d_content">' +
-                                                '       <div class=" d_float"><img class="tx" src="/wjinc/default/images/tx.png"></div>' +
-                                                '       <div class=" d_float d_w">' +
-                                                '           <p class="col999 f24 tr">' + msg.name + '</p>' +
-                                                '           <div class="bg_red">' +
-                                                '               <div class="f30 clearfix fff d_title">' +
-                                                '                   <div class="fl">' +
-                                                '                       <span class="iconfont icon-shijian"></span> 第<span>' + msg.number + '期</span>' +
-                                                '                   </div>' +
-                                                '                   <div class="fr">投注类型：<span>' + msg.title + '</span></div>' +
-                                                '               </div>' +
-                                                '               <div class="f40 fff"><span class="iconfont icon-qiandai1 f40"></span> ' + msg.money + '元</div>' +
-                                                '           </div>' +
-                                                '       </div>' +
-                                                '   </div>' +
-                                                '</li>';
-                                    } else {
-                                        html += '<li class="d_left">' +
-                                                '   <div class="tc col999 f24">' + msg.time + '</div>' +
-                                                '   <div class="clearfix d_content">' +
-                                                '       <div class=" d_float"><img class="tx" src="/wjinc/default/images/tx.png"></div>' +
-                                                '       <div class=" d_float d_w">' +
-                                                '           <p class="col999 f24 tl">' + msg.name + '</p>' +
-                                                '           <div class="bg_red">' +
-                                                '               <div class="f30 clearfix fff d_title">' +
-                                                '                   <div class="fl">' +
-                                                '                       <span class="iconfont icon-shijian"></span> 第<span>' + msg.number + '期</span>' +
-                                                '                   </div>' +
-                                                '                   <div class="fr">投注类型：<span>' + msg.title + '</span></div>' +
-                                                '               </div>' +
-                                                '               <div class="f40 fff"><span class="iconfont icon-qiandai1 f40"></span> ' + msg.money + '元</div>' +
-                                                '           </div>' +
-                                                '       </div>' +
-                                                '   </div>' +
-                                                '</li>';
-                                    }
-                                }
-                                $(".d_box").append(html);
-
-                            }
-                            if (type == 'system') {
-                                var cls = msg.class;
-                                var html = '';
-
-                                if (cls == 1) {
-                                    if (msg.uid != uid) {
-                                        html += '<li class="d_center">' +
-                                                '   <div class="f24 "><div class="d_text1">欢迎<span class="col_red">' + msg.name + '</span>进入房间</div></div>' +
-                                                '</li>'
-                                    }
-                                } else if (cls == 2) {
-                                    if (msg.uid == uid) {
-                                        html += '<li class="d_center">' +
-                                                '   <div class="f30 d_text2 "><span class="col_red">[' + msg.number + '期]</span>单注<span class="col_red">2元</span>起，<span class="col_red">20000元</span>封顶，总注<span class="col_red">3000000元</span>封顶<br><span class="col_red">★★现状可以开始投注★★</span></div>' +
-                                                '</li>'
-                                    }
-                                } else if (cls == 3) {
-                                    if (msg.uid == uid) {
-                                        html += '<li class="d_center">' +
-                                                '   <div class="d_text2 "><span class="col_red">[' + msg.number + '期]已封盘</span>，下注结果已系统开奖为标准，如有异议，请及时联系客服</div>' +
-                                                '</li>'
-                                    }
-                                } else if (cls == 4) {
-                                    if (msg.uid == uid) {
-                                        html += '<li class="d_center">' +
-                                                '   <div class="d_text2"><span class="col_red">[' + msg.number + '期]</span>恭喜<span class="col_red">' + msg.name + '</span>已中2倍，共获得<span class="col_red">' + msg.winmoney + '元</span></div>' +
-                                                '</li>'
-                                    }
-                                } else if (cls == 5) {
-                                    if (msg.uid == uid) {
-                                        html += '<li class="d_center">' +
-                                                '   <div class="d_text2 "><span class="col_red">[' + msg.number + '期]</span>距离封盘时间不足<span class="col_red">60秒</span>，请抓紧时间下注</div>' +
-                                                '</li>'
-                                    }
-                                } else if (cls == 6) {
-                                    if (msg.uid == uid) {
-                                        html += '<li class="d_center">' +
-                                                '   <div class="d_text2 "><span class="col_red">[' + msg.number + '期]开奖号码：' + msg.name + '</span></div>' +
-                                                '</li>'
-                                    }
-                                }
-
-                                $(".d_box").append(html);
-                            }
-                        }
-                        window.scrollTo(0, document.body.scrollHeight);
-                        $('#message').val('');
-                    }
-
-                    //发生错误
-                    websocket.onerror = function (event) {
-                        i++;
-                        console.log("Connected to WebSocket server error");
-                        $('.show-area').append('<p class="bg-danger message"><a name="' + i + '"></a><i class="glyphicon glyphicon-info-sign"></i>Connect to WebSocket server error.</p>');
-                    }
-
-                    //连接关闭
-                    websocket.onclose = function (event) {
-                        i++;
-                        console.log('websocket Connection Closed. ');
-                        $('.show-area').append('<p class="bg-warning message"><a name="' + i + '"></a><i class="glyphicon glyphicon-info-sign"></i>websocket Connection Closed.</p>');
-
-                    }
-
-
-
-
-                } else {
-                    alert('该浏览器不支持web socket');
-                }
-                function reconnect() {
+                function initWebSocket () {
                     if (window.WebSocket) {
                         websocket = new WebSocket(wsurl);
 
                         //连接建立
                         websocket.onopen = function (evevt) {
                             console.log("Connected to WebSocket server.");
-                            //
+                            //用户进来
+
+                            var msg = {
+                                type: 'system',
+                                name: name,
+                                uid: uid,
+                                class: 1,
+                                ftype: ftype
+                            };
+                            websocketSend(JSON.stringify(msg));
                             // $('.show-area').append('<p class="bg-info message"><i class="glyphicon glyphicon-info-sign"></i>Connected to WebSocket server!</p>');
                         }
                         //收到消息
@@ -525,15 +391,26 @@
 
                         }
 
-
-
-
                     } else {
                         alert('该浏览器不支持web socket');
                     }
                 }
-                //}
+                initWebSocket();
 
+                function websocketSend(data){
+                    function sendmsg() {
+                        websocket.send(data);
+                    };
+                    if (websocket.readyState !== 1) {
+                        websocket.close();
+                        initWebSocket();
+                        setTimeout(function() {
+                            sendmsg();
+                        }, 250);
+                    } else {
+                        sendmsg();
+                    };    
+                }
                 var onlyht = false;
                 var game = {
                     init: function () {
@@ -866,7 +743,7 @@
                                 game.allCont.all_money = 0;
                                 if (!res.code) {
 
-                                    websocket.send(JSON.stringify(msg));
+                                    websocketSend(JSON.stringify(msg));
                                     $(".pop_wrap").hide();
                                 } else {
                                     $(".hi_msg").text(res.msg);
@@ -920,7 +797,7 @@
                                     ftype: ftype,
                                     number: game.global.number
                                 };
-                                websocket.send(JSON.stringify(msg));
+                                websocketSend(JSON.stringify(msg));
                                 game.global.tipsfor60 = true;
                                 // $(".kaijiang")[0].play();
                             }
@@ -937,7 +814,7 @@
                                         ftype: ftype,
                                         number: game.global.number
                                     };
-                                    websocket.send(JSON.stringify(msg));
+                                    websocketSend(JSON.stringify(msg));
                                 }
                                 if (Math.abs(times) == kjftime) {
                                     clearInterval(game.global.counttimer);
@@ -975,7 +852,7 @@
                                                 ftype: ftype,
                                                 number: game.global.lastactionNo
                                             };
-                                            websocket.send(JSON.stringify(msg));
+                                           websocketSend(JSON.stringify(msg));
                                         }
                                     } else {
                                         window.location.reload;
@@ -1015,7 +892,7 @@
                                         number: game.global.number
                                     };
                                     try {
-                                        websocket.send(JSON.stringify(msg));
+                                        websocketSend(JSON.stringify(msg));
                                     } catch (err) {
 //
 //                                        $(".hint_pop .hint_cont").html("服务器异常,请刷新重试");
@@ -1119,7 +996,7 @@
                                 number: game.global.number
                             };
                             try {
-                                websocket.send(JSON.stringify(msg));
+                                websocketSend(JSON.stringify(msg));
                             } catch (err) {
                             }
                         }, 10000)
@@ -1153,7 +1030,7 @@
                                     number: game.global.number
                                 };
                                 try {
-                                    websocket.send(JSON.stringify(msg));
+                                    websocketSend(JSON.stringify(msg));
                                 } catch (err) {
                                     reconnect();
                                 }
