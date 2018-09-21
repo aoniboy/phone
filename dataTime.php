@@ -2,7 +2,7 @@
 require 'lib/core/DBAccess.class';
 require 'config.php';
 $db = new DBAccess($conf['db']['dsn'], $conf['db']['user'], $conf['db']['password']);
-$type = 54;
+$type = 55;
 
 //$result = $db->getRow("SELECT * FROM ssc_data_time WHERE type =$type order by id desc LIMIT 1 ");
 //print_r($result);
@@ -11,6 +11,22 @@ $type = 54;
 //    $sql .= "values($i,1,8,14,14,1,102,$i,'calc28num','calc28num','calc28nummax')";
 //    $db->insert($sql);
 //}
+//$time = 1535461230;
+//for($i =1;$i<53;$i++){
+//    $date =  date("H:i:s",$time);
+//    if($time){
+//        $sql = "INSERT INTO ssc_data_time(type, actionNo, actionTime, stopTime) VALUES('".$type."', '".$i."', '".$date."', '".$date."')";
+//        $db->insert($sql);
+//        $time = $time +210;
+//    }
+//}
+$sql = "select * from ssc_data_time where type = 55 order by actionTime asc";
+$result = $db->getRows($sql);
+foreach ($result as $key=>$value) {
+    $sql = "update ssc_data_time set actionNo =".($key+1)." where id = ".$value['id']." LIMIT 1";
+    $db->update($sql);
+}
+exit;
 $sql = "select * from ssc_played where id > 315";
 $result = $db->getRows($sql);
 foreach($result as $k=>$v) {

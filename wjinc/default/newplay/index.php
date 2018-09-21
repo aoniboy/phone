@@ -64,7 +64,7 @@
                 <ul class="d_box">
 
                     <li class="d_center">
-                        <div class="f30 d_text2 "><span class="col_red info_qishu" >[<?= $this->info28['number'] ?>期]</span>单注<span class="col_red">2元</span>起，<span class="col_red">20000元</span>封顶，总注<span class="col_red">3000000元</span>封顶<br><span class="col_red">★★现状可以开始投注★★</span></div>
+                        <div class="f30 d_text2 "><span class="col_red info_qishu" >[<?= $this->info28['number'] ?>期]</span>单注<span class="col_red">1元</span>起，<span class="col_red">10000元</span>封顶，总注<span class="col_red">1150000元</span>封顶<br><span class="col_red">★★现状可以开始投注★★</span></div>
                     </li>
                     <li class="d_center">
                         <div class="f30 d_text2 ">聊天窗口已激活，现支持显示他人投注</div>
@@ -340,7 +340,7 @@
                                     } else if (cls == 2) {
                                         if (msg.uid == uid) {
                                             html += '<li class="d_center">' +
-                                                    '   <div class="f30 d_text2 "><span class="col_red">[' + msg.number + '期]</span>单注<span class="col_red">2元</span>起，<span class="col_red">20000元</span>封顶，总注<span class="col_red">3000000元</span>封顶<br><span class="col_red">★★现状可以开始投注★★</span></div>' +
+                                                    '   <div class="f30 d_text2 "><span class="col_red">[' + msg.number + '期]</span>单注<span class="col_red">1元</span>起，<span class="col_red">10000元</span>封顶，总注<span class="col_red">1150000元</span>封顶<br><span class="col_red">★★现状可以开始投注★★</span></div>' +
                                                     '</li>'
                                         }
                                     } else if (cls == 3) {
@@ -406,7 +406,7 @@
                         initWebSocket();
                         setTimeout(function() {
                             sendmsg();
-                        }, 250);
+                        }, 1000);
                     } else {
                         sendmsg();
                     };    
@@ -1032,7 +1032,7 @@
                                 try {
                                     websocketSend(JSON.stringify(msg));
                                 } catch (err) {
-                                    reconnect();
+                                    initWebsocket();
                                 }
                             } else {
                                 if (game.global.counttimer)

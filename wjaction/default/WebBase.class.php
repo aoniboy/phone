@@ -351,12 +351,13 @@ class WebBase extends Object {
             }
         }else {
             $info  = $this->getRow("select * from ssc_data where type = 55 order by id desc");
-            $actionTime = date("Y-m-d H:i:s",$info['time']+210-10);
-            if(time() - strtotime($actionTime) >0) {
-                $actionTime = date("Y-m-d H:i:s",$info['time']+210-10 + 210 -10);
+            
+            if(time() - $info['time'] >140) {
+                $actionTime = date("Y-m-d H:i:s",$info['time']+140 + 140 +160);
                 $this->set28TimeNo($actionTime, $time);
                 $actionNo = $info['number']+2;
             } else {
+                $actionTime = date("Y-m-d H:i:s",$info['time']+140+81);
                 $this->set28TimeNo($actionTime, $time);
                 $actionNo = $info['number']+1;
             }
