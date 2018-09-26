@@ -15,7 +15,7 @@
     <?php
 
 	foreach ($this->gameinfo as $key=>$val) {
-	    $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data sd,ssc_type st where sd.type = {$val} and st.id={$val}  order by sd.id desc   ";
+	    $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data_{$this->user['suffix']} sd,ssc_type st where sd.type = {$val} and st.id={$val}  order by sd.id desc   ";
 	    $result  = $this->getRow($sql);
 	    !empty($result)?$tmp[] = $result:'';
 	}

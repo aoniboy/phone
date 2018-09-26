@@ -140,7 +140,7 @@ class Index extends WebLoginBase {
     public final function openListDetail($type) {
         $this->type = intval($type);
         $this->typename = $this->getValue("select title from ssc_type where id=?", $type);
-        $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data sd,ssc_type st where sd.type = {$type} and st.id={$type}  order by sd.id desc  limit 0,10 ";
+        $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data_{$this->user['suffix']} sd,ssc_type st where sd.type = {$type} and st.id={$type}  order by sd.id desc  limit 0,10 ";
         $this->result = $this->getRows($sql);
         $this->open = 'active';
         $this->display('newindex/open-list-detail.php');
@@ -149,7 +149,7 @@ class Index extends WebLoginBase {
     // new加载历史开奖数据
     public final function getOpenHistoryData($type, $start = 10) {
         $typename = $this->getValue("select title from ssc_type where id=?", $type);
-        $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data sd,ssc_type st where sd.type = {$type} and st.id={$type}  order by sd.id desc  limit {$start},10 ";
+        $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data_{$this->user['suffix']} sd,ssc_type st where sd.type = {$type} and st.id={$type}  order by sd.id desc  limit {$start},10 ";
         $result = $this->getRows($sql);
         foreach ($result as $key => $val) {
             $result[$key]['time'] = date("Y-m-d H:i", $val['time']);

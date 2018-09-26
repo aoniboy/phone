@@ -7,6 +7,8 @@ $null = NULL;
 //创建tcp socket
 $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 socket_set_option($socket, SOL_SOCKET, SO_REUSEADDR, 1);
+socket_set_option($socket,SOL_SOCKET,SO_RCVTIMEO,array("sec"=>3, "usec"=>0 ) );
+socket_set_option($socket,SOL_SOCKET,SO_SNDTIMEO,array("sec"=>20, "usec"=>0 ) );
 socket_bind($socket, 0, $port);
 //监听端口
 socket_listen($socket);

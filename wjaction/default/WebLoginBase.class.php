@@ -41,7 +41,10 @@ class WebLoginBase extends WebBase {
         $user = $this->getRow($sql, $this->user['uid']);
         $user['sessionId'] = $sessionId;
         $user['_gameFanDian'] = $this->getGameFanDian();
+        $user['suffix'] = $this->user['suffix'];
         $_SESSION[$this->memberSessionName] = serialize($user);
+        
+
         $this->user = $user;
         return true;
     }

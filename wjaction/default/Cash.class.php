@@ -17,6 +17,7 @@ class Cash extends WebLoginBase{
 	}
 	
 	public final function recharge(){
+                
 		$this->display('newsafe/my_recharge.php');
 	}
 	

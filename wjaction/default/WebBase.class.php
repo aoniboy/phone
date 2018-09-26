@@ -339,7 +339,7 @@ class WebBase extends Object {
 
     public function jnd28(&$actionNo, &$actionTime, $time = null,$flag=false) {
         if($flag) {
-            $info  = $this->getRow("select * from ssc_data where type = 55 order by id desc");
+            $info  = $this->getRow("select * from ssc_data_{$this->user['suffix']} where type = 55 order by id desc");
             $actionTime = date("Y-m-d H:i:s",$info['time']);
             if(time() - strtotime($actionTime) >210) {
                 $actionTime = date("Y-m-d H:i:s",$info['time']+210-10);
@@ -350,7 +350,7 @@ class WebBase extends Object {
                 $actionNo = $info['number'];
             }
         }else {
-            $info  = $this->getRow("select * from ssc_data where type = 55 order by id desc");
+            $info  = $this->getRow("select * from ssc_data_{$this->user['suffix']} where type = 55 order by id desc");
             
             if(time() - $info['time'] >140) {
                 $actionTime = date("Y-m-d H:i:s",$info['time']+140 + 140 +160);
@@ -477,5 +477,11 @@ class WebBase extends Object {
         }
     }
 
+    public function get1($playedid) {
+        if ($playedid) {
+            $maxcount = $this->getValue("select maxcount from {$this->prename}played where id = ? ", $playedid);
+        }
+        return intval($maxcount);
+    }
 /////
 }

@@ -1056,7 +1056,7 @@
                                         prize_col = '';
                                     } else if (list[i].status == 2) {
                                         text = '未开奖';
-                                        prize_col = '';
+                                        prize_col = 'prize_green';
                                     } else if (list[i].status == 3) {
                                         text = '中奖';
                                         prize_col = 'prize_win';

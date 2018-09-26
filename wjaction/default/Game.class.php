@@ -194,7 +194,7 @@ class Game extends WebLoginBase {
     public final function getKJinfo($type) {
         $this->type = intval($type);
         $lastNo = $this->getGameLastNo($this->type);
-        $kjHao = $this->getValue("select data from {$this->prename}data where type={$this->type} and number='{$lastNo['actionNo']}'");
+        $kjHao = $this->getValue("select data from {$this->prename}data_{$this->user['suffix']} where type={$this->type} and number='{$lastNo['actionNo']}'");
         if ($kjHao)
             $kjHao = explode(',', $kjHao);
         $tnumber = '';
@@ -222,7 +222,7 @@ class Game extends WebLoginBase {
     public final function getQhinfo($type) {
         $this->type = intval($type);
         $lastNo = $this->getGameLastNo($this->type);
-        $kjHao = $this->getValue("select data from {$this->prename}data where type={$this->type} and number='{$lastNo['actionNo']}'");
+        $kjHao = $this->getValue("select data from {$this->prename}data_{$this->user['suffix']} where type={$this->type} and number='{$lastNo['actionNo']}'");
         if ($kjHao)
             $kjHao = explode(',', $kjHao);
         $actionNo = $this->getGameNo($this->type);
@@ -439,7 +439,7 @@ class Game extends WebLoginBase {
 
     public final function getKjListInfo($type) {
         $type = intval($type);
-        $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data sd,ssc_type st where sd.type = {$type} and st.id={$type}  order by sd.id desc  limit 0,5 ";
+        $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data_{$this->user['suffix']} sd,ssc_type st where sd.type = {$type} and st.id={$type}  order by sd.id desc  limit 0,5 ";
         $result = $this->getRows($sql);
         foreach ($result as $key => $val) {
             $result[$key]['time'] = date("Y-m-d H:i", $val['time']);
