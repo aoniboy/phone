@@ -150,17 +150,18 @@ class User extends WebBase {
             
             if(!empty($user['parentId'])) {
                 $suffix = explode(",",$user['parents'])[1];
+                
                 $sql = "select uid from ssc_agency_domain sad, ssc_domain sd where sd.id = sad.domain_id and  sd.enable=1 and sad.enable=1 and sd.domain='{$domain}' and sad.uid={$suffix}";
-                $domainAgencyInfo = $this->getRow($sql, $username);
-                if(empty($domainAgencyInfo)) {
+                $domainAgencyInfo = $this->getRow($sql);
+                if(empty($domainAgencyInfo) ) {
                     throw new Exception('抱歉你不允许在此域名下登录！');
                 }else {
                     $user['suffix'] = $suffix;
                 }
             }else {
                 $sql = "select uid from ssc_agency_domain sad, ssc_domain sd where sd.id = sad.domain_id and  sd.enable=1 and sad.enable=1 and sd.domain='{$domain}'";
-                $domainAgencyInfo = $this->getRow($sql, $username);
-                if(empty($domainAgencyInfo)) {
+                $domainAgencyInfo = $this->getRow($sql);
+                if(empty($domainAgencyInfo) || $user['type'] !=1) {
                     throw new Exception('抱歉你不允许在此域名下登录！');
                 }else {
                     $user['suffix'] = $domainAgencyInfo['uid'];
@@ -174,7 +175,7 @@ class User extends WebBase {
         }
         $_SESSION[$this->memberSessionName] = serialize($user);
         // 把别人踢下线
-        $this->update("update ssc_member_session set isOnLine=0 where uid={$user['uid']} and id < {$user['sessionId']}");
+        //$this->update("update ssc_member_session set isOnLine=0 where uid={$user['uid']} and id < {$user['sessionId']}");
         return $user;
     }
 

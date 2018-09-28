@@ -98,11 +98,13 @@
                 <i class="iconfont icon-tuandui my_col4"></i> <span>团队帐变<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
             </a>
         </li>
+        <?php if($this->user['parentId']) {?>
         <li>
             <a href="/index.php/team/linkList" class="clearfix">
                 <i class="iconfont icon-tuandui my_col6"></i> <span>邀请注册<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
             </a>
         </li>
+        <?php } ?> 
     </ul> 
      <?php } ?>   
              <div class="hint_pop hide">

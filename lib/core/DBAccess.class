@@ -309,6 +309,18 @@ class DBAccess extends PDO{
 			}
 		}
 	}
+        
+        public function sexec($query){
+		
+                if($this->exec($query)){
+                        return true;
+                }else{
+                       
+                        return false;
+                        
+                }
+		
+	}
 
 	public function insertRow($table, $data){
 		$sql="insert into $table(";
