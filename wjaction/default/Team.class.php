@@ -402,7 +402,7 @@ class Team extends WebLoginBase {
                     $sql = "insert into {$this->prename}agency_domain (`enable`,`uid`,`domain_id`) values(1,$id,$domain_id)";
                     if (!$this->sexec($sql)) {
                         $this->outputData(1, array(), '添加会员失败,域名已经被使用，请刷新获取最新有效域名');
-                        $this->rollBack();
+                        
                     }
                     $sql = "CREATE TABLE `ssc_data_$id` (
                         `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -417,7 +417,7 @@ class Team extends WebLoginBase {
                       ) ENGINE=MyISAM AUTO_INCREMENT=2693 DEFAULT CHARSET=latin1 COMMENT='开奖数据'";
                     if (!$this->insert($sql)) {
                         $this->outputData(1, array(), '添加会员失败,创建代理开奖数据失败');
-                        $this->rollBack();
+                        
                     }
                 }
                 $this->commit();

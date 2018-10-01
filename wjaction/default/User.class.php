@@ -147,7 +147,7 @@ class User extends WebBase {
             $urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
             $urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
             $domain = $urldan?$urldan:(explode(":",substr($urlshang, 7))[0]);
-            
+            $domain = ltrim($domain,"m.");
             if(!empty($user['parentId'])) {
                 $suffix = explode(",",$user['parents'])[1];
                 
@@ -175,7 +175,7 @@ class User extends WebBase {
         }
         $_SESSION[$this->memberSessionName] = serialize($user);
         // 把别人踢下线
-        //$this->update("update ssc_member_session set isOnLine=0 where uid={$user['uid']} and id < {$user['sessionId']}");
+        $this->update("update ssc_member_session set isOnLine=0 where uid={$user['uid']} and id < {$user['sessionId']}");
         return $user;
     }
 
