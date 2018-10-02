@@ -1888,13 +1888,13 @@ class Bet {
         return $num;
     }
     
-    public static function calc28num($a, $b) {
+    public static function calc28num($a) {
         $num = 1;
         
         return $num;
     }
 
-    public static function calc28numbaozi($a, $b) {
+    public static function calc28numbaozi($a) {
         $num = 1;
         
         return $num;

@@ -66,7 +66,7 @@ class Index extends WebLoginBase {
         }
     }
 
-    public final function playedType($type, $playedId) {
+    public final function playedType($type, $playedId=null) {
         $sql = "select type from {$this->prename}type where id=? and enable = 1 order by sort";
         $data = $this->getRow($sql, $type);
         if (empty($data))

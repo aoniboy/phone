@@ -1,6 +1,6 @@
 <?php
 require 'lib/core/DBAccess.class';
-require 'lib/core/Object.class';
+require 'lib/core/Objects.class';
 require 'wjaction/default/WebBase.class.php';
 require 'wjaction/default/WebLoginBase.class.php';
 

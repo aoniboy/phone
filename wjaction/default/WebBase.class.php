@@ -3,7 +3,7 @@
 /**
  * ǰ̨ҳ�����
  */
-class WebBase extends Object {
+class WebBase extends Objects {
 
     public $controller;
     public $action;
